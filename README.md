@@ -37,26 +37,12 @@ To get a local copy up and running, follow these simple steps.
 
 You just need a modern web browser like Chrome, Firefox, or Safari.
 
-### Installation
-
-1.  Clone the repository to your local machine:
-    ```sh
-    git clone https://github.com/obinesto/E-commerce_hack.git
-    ```
-2.  Navigate to the project directory:
-    ```sh
-    cd E-commerce_hack
-    ```
-3.  Open the `index.html` file in your web browser to start the application.
-
----
-
 ## 📂 Project Structure
 
 The project is organized with a clear separation of concerns, making it easy to navigate and maintain.
 
 ```
-E-commerce_hack/
+ihub/
 ├── index.html            # Landing Page
 ├── cart.html             # Shopping Cart Page
 ├── collection.html       # Product Collection Page
