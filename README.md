@@ -1,10 +1,10 @@
-# Demo E-commerce Web Application
+# iHub – Demo E-commerce Web Application
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A fully responsive demo e-commerce application built with HTML5, CSS, and Vanilla JavaScript. Featuring both user and admin dashboard, this project showcases a complete front-end user flow, from browsing products to completing a purchase with a real payment gateway integration.
+A fully responsive demo e-commerce application built with HTML5, CSS, Vanilla JavaScript and paystack API. Featuring both user and admin dashboard, this project showcases a complete front-end user flow, from browsing products to completing a purchase with a real payment gateway integration.
 
-**[View Live Demo](https://e-commerce-hack.vercel.app/)**
+**[View Live Demo](https://ihub.obinestotech.com/)**
 ---
 
 ## ✨ Features
