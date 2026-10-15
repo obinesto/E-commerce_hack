@@ -396,6 +396,7 @@ var adapters = [
         "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores qui sequi veritatis ex, omnis repellendus, iste quod magnam aliquam nobis esse nemo saepe id? Alias doloribus placeat harum dolorem quaerat." 
     }
 ];
+
 document.addEventListener('DOMContentLoaded', () => {
     const productContainer = document.getElementById('product-container4');
 

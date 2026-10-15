@@ -1,76 +1,275 @@
-.contact-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.form-div{
-    background-color: aliceblue;
-    margin-top: 10rem;
-    height: 74vh;
-}
-.form{
-    margin-left: 2.5rem;
-}
-.email-input{
-    width: 80%;
-    margin-bottom: 20px;
-    padding: 0.5rem;
-}
-.input-box{
-    width: 80%;
-    margin-bottom: 20px;
-    padding: 0.5rem;
-    margin-top: 2rem;
-}
-.textarea{
-    height: 13vh;
-    width: 38vw;
-    margin-top: 1rem;
+/* Contact — plain info column on the left, form on the right. */
+
+.contact-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 6.5rem clamp(1rem, 4vw, 3rem) 4rem;
+    box-sizing: border-box;
 }
 
-.textarea textarea{
-    width: 100%;
-    height: 100%;
+.contact-container {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.submit-color{
-    font-size: 17px;
-    float: left;
-    border-radius: 9px;
+
+/* Left info column — plain, no card */
+.contact-info {
+    background: none;
+    color: #000;
+    min-width: 0;
+    padding-top: 0.25rem;
 }
-.contact-side{
-    margin-top: 7rem;
+
+.contact-info h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.75rem;
+    margin: 0 0 0.25rem;
+    color: #000;
 }
-.contact-side hr{
-    width: 15%;
+
+.contact-info h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
 }
-.get-in{
+
+.contact-info p {
+    margin: 0 0 0.4rem;
+}
+
+.contact-info .muted {
+    color: #555;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+}
+
+.info-block + .info-block {
     margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e5e5;
 }
-.get-in-2{
-    margin-top: 2rem;
+
+.team-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-.number{
-    display: flex;
-    gap: 0.5rem;
-    padding-left: 1rem;
+
+.team-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #eee;
 }
-.number a{
+
+.team-list li:last-child {
+    border-bottom: none;
+}
+
+.team-list a {
+    display: inline-block;
+    color: #000;
+    font-weight: 700;
+    font-size: 1.05rem;
     text-decoration: none;
+    margin-right: 0.5rem;
 }
-.trading-hours{
-    font-weight: bold;
+
+.team-list a:hover {
+    text-decoration: underline;
+}
+
+.team-list span {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Right form — plain, underline fields */
+.form-div {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    margin-top: 0;
+    height: auto;
+    min-height: 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.form-div h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0 0 0.3rem;
+    font-size: 1.5rem;
+}
+
+.form-div .muted {
+    color: #555;
+    margin: 0 0 1.5rem;
+}
+
+.form {
+    margin-left: 0;
+    max-width: none;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.field {
+    min-width: 0;
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #555;
+    margin: 0 0 0.15rem;
+}
+
+.email-input,
+.input-box {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.6rem 0.1rem;
+    border: none;
+    border-bottom: 2px solid #d8d8d8;
+    border-radius: 0;
+    font-size: 1.05rem;
+    background: transparent;
+}
+
+.email-input:focus,
+.input-box:focus,
+.textarea textarea:focus {
+    outline: none;
+    border-bottom-color: #000;
+    background: #f7f7f7;
+}
+
+/* Enquiry chips — like product variant pills */
+.chip-group {
+    border: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+}
+
+.chip-group legend {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #555;
+    padding: 0;
+    margin-bottom: 0.6rem;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.enquiry-option {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #cfcfcf;
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    background: #fff;
+    user-select: none;
+}
+
+.enquiry-option input {
+    accent-color: #000;
+    margin-right: 0.45rem;
+}
+
+.enquiry-option:has(input:checked) {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+.textarea {
+    height: auto;
+    width: 100%;
+    margin-top: 0;
+}
+
+.textarea textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 150px;
+    resize: vertical;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid #cfcfcf;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+}
+
+.submit-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.submit-color {
+    font-size: 1rem;
+    font-weight: 700;
+    float: none;
+    border-radius: 6px;
+    border: none;
+    background: #000;
+    color: #fff;
+    padding: 0.8rem 2.2rem;
+    margin-top: 0;
+    cursor: pointer;
+    width: auto;
+}
+
+.submit-color:hover {
+    background-color: #cbf802;
+    color: #000;
+}
+
+.fine-print {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
 }
 
 .custom-alert {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #000000;
-    padding: 10px;
-    border-radius: .5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
     z-index: 1000;
     text-align: center;
-    width: 17vw;
+    width: min(90vw, 360px);
+    box-sizing: border-box;
 }
 
 .custom-alert p {
@@ -84,19 +283,33 @@
     background-color: #cbf802;
     color: #000000;
     border: none;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     font-size: 16px;
 }
 
-/* MEDIA QUERY */
-@media (max-width: 1000px) {
-    .contact-container{
-        grid-template-columns:1fr;
+@media (max-width: 1024px) {
+    .contact-container {
+        grid-template-columns: 1fr;
     }
-    
-    .textarea{
-        width: 80%;
+}
+
+@media (max-width: 640px) {
+    .contact-page {
+        padding: 5.5rem 0.9rem 2.5rem;
     }
-    
+
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .submit-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .submit-color {
+        width: 100%;
+    }
 }

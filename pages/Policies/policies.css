@@ -1,0 +1,60 @@
+/* Shared reading layout for all policy pages. */
+
+.policy-page {
+    max-width: 860px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 7rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+.policy-page h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #000;
+}
+
+.policy-page h1::after {
+    content: "";
+    display: block;
+    width: 120px;
+    border-top: 4px solid #cbf802;
+    margin-top: 1rem;
+}
+
+.policy-page h4 {
+    font-size: 1.15rem;
+    margin: 2.5rem 0 0.75rem;
+    color: #000;
+}
+
+.policy-page h1 + p {
+    margin-top: 2.5rem;
+}
+
+.policy-page p,
+.policy-page li {
+    color: #333;
+    line-height: 1.7;
+}
+
+.policy-page p {
+    margin: 0 0 1rem;
+}
+
+.policy-page ul {
+    margin: 1rem 0;
+    padding-left: 1.25rem;
+}
+
+.policy-page li {
+    margin-bottom: 0.4rem;
+}
+
+@media (max-width: 640px) {
+    .policy-page {
+        padding: 5.5rem 1rem 2rem;
+    }
+}

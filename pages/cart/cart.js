@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cartItemsContainer.innerHTML = "";
     let total = 0;
 
+    if (cart.length === 0) {
+      const emptyRow = document.createElement("tr");
+      emptyRow.className = "cart-empty-row";
+      emptyRow.innerHTML = `<td colspan="5">Your cart is empty. <a href="../../index.html">Continue shopping</a></td>`;
+      cartItemsContainer.appendChild(emptyRow);
+    }
+
     cart.forEach((item) => {
       const itemTotalRaw = item.price.replace(/,/g, ""); // remove commas to aid summation
       const itemTotal = parseInt(itemTotalRaw, 10) * item.quantity;
@@ -19,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const itemRow = document.createElement("tr");
       itemRow.innerHTML = `
-        <td><img src='${item.image}' width='40px'> ${item.name}</td>
+        <td><span class="cart-product"><img src='${item.image}' alt=''> <span>${item.name}</span></span></td>
         <td>${nairaSymbol} ${item.price}</td>
         <td>
           <input type="number" value="${item.quantity}" min="1" data-id="${item.id}" class="quantity-input">
@@ -41,7 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".quantity-input").forEach((input) => {
       input.addEventListener("change", (event) => {
         const productId = parseInt(event.target.getAttribute("data-id"));
-        const newQuantity = parseInt(event.target.value);
+        const newQuantity = parseInt(event.target.value, 10);
+        if (!Number.isFinite(newQuantity) || newQuantity < 1) {
+          removeItemFromCart(productId);
+          return;
+        }
         updateQuantity(productId, newQuantity);
       });
     });
@@ -124,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
         text: "Your cart is empty!",
         duration: 3000,
         gravity: "top", // `top` or `bottom`
-        positionLeft: true, // `true` or `false` 
-        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        position: "left", 
+        style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
         }).showToast();
 
       return;
@@ -141,8 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "Your Cart is Cleared Successfully!",
       duration: 3000,
       gravity: "top", // `top` or `bottom`
-      positionLeft: true, // `true` or `false` 
-      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+      position: "left", 
+      style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
       }).showToast();
   }
 
@@ -162,8 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
             text: "Your cart is empty!",
             duration: 3000,
             gravity: "top", // `top` or `bottom`
-            positionLeft: true, // `true` or `false` 
-            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            position: "left", 
+            style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
         }
     

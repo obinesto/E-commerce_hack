@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,51 +14,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
+
 <body>
     <header class="header">
 
         <!-- nav section -->
-          <nav class="navbar">
-              <div class="nav-toggle">
-                  <i class="fas fa-bars" id="toggle1"></i>
-                  <i class="fas fa-xmark" id="toggle2"></i>
-              </div>
-              <div class="logo">
-                  <a href="../../index.html"><img src="../../assets/images/logos/logo.svg" alt="logo"></a>
-              </div>
-              <div class="nav-links">
-                  <ul>
-                      <li class="dropdown">
-                          <a href="../../index.html">Home</a>
-                      </li>
-  
-                      <li class="dropdown">
-                          <a href="#">Products</a>
-                          <div class="dropdown-content">
-                              <a href="../../pages/Products/iphone.html">iPhone</a>
-                              <a href="../../pages/Products/ipad.html">iPad</a>
-                              <a href="../../pages/Products/mac.html">Mac</a>
-                          </div>
-                      </li>
-  
-                      <li class="dropdown">
-                          <a href="#">Services</a>
-                          <div class="dropdown-content">
-                              <a href="../../pages/Services/repairs.html">Repairs</a>
-                              <a href="../../pages/Services/trading.html">Trade-In</a>
-                              <a href="../../pages/Services/financing.html">Financing</a>
-                          </div>
-                      </li>
-  
-                      <li><a href="../../pages/contact.html">Contact</a></li>
-                  </ul>
-              </div>
+        <nav class="navbar">
+            <div class="nav-toggle">
+                <i class="fas fa-bars" id="toggle1"></i>
+                <i class="fas fa-xmark" id="toggle2"></i>
+            </div>
+            <div class="logo">
+                <a href="../../index.html"><img src="../../assets/images/logos/logo.svg" alt="logo"></a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li class="dropdown">
+                        <a href="../../index.html">Home</a>
+                    </li>
 
-              <div class="search-bar">
+                    <li class="dropdown">
+                        <a href="#">Products</a>
+                        <div class="dropdown-content">
+                            <a href="../../pages/Products/iphone.html">iPhone</a>
+                            <a href="../../pages/Products/ipad.html">iPad</a>
+                            <a href="../../pages/Products/mac.html">Mac</a>
+                            <a href="../../pages/Products/accessories.html">Accessories</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../../pages/Services/repairs.html">Repairs</a>
+                            <a href="../../pages/Services/trading.html">Trade-In</a>
+                            <a href="../../pages/Services/financing.html">Financing</a>
+                        </div>
+                    </li>
+
+                    <li><a href="../../pages/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search...">
                 <button id="search-button">Search</button>
-              </div>
-              <div class="handleUserStates">
+            </div>
+            <div class="handleUserStates">
                 <div class="user-account">
                     <ul>
                         <li>
@@ -70,16 +73,16 @@
                     </ul>
                 </div>
             </div>
-              <div class="cart" id="cart-icon-container">    
+            <div class="cart" id="cart-icon-container">
                 <a href="../cart/cart.html">
                     <i data-feather="shopping-cart"></i>
                     <span>cart</span>
                     <div id="item-count-circle">0</div>
                 </a>
-  
-                  
-            </nav>
-  
+
+
+        </nav>
+
         <!-- navbar 2 -->
         <div class="nav-links2">
             <ul>
@@ -97,6 +100,7 @@
                         <a href="../../pages/Products/iphone.html">iPhone</a>
                         <a href="../../pages/Products/ipad.html">iPad</a>
                         <a href="../../pages/Products/mac.html">Mac</a>
+                        <a href="../../pages/Products/accessories.html">Accessories</a>
                     </div>
                 </li>
 
@@ -119,78 +123,53 @@
         </div>
     </header>
 
-<!-- contents below dynamically added -->
-<div class="container-div">
+    <!-- contents below dynamically added -->
+    <div class="container-div">
 
-<div class="product-display" id="product-details">
+        <div class="product-display" id="product-details">
 
-</div>
+        </div>
 
-<div class="advert">
-    <h5 style="font-weight: 600;">DELIVERY & RETURNS</h5>
-    <hr>
-    <p>I-HUB <span style="color: red;">Express</span></p>
-    <h6>Free delivery on thousands of products in Lagos, Ibadan & Abuja</h6>
-    <hr>
+        <div class="advert">
+            <h5 style="font-weight: 600;">DELIVERY & RETURNS</h5>
+            <hr>
+            <p>I-HUB <span style="color: red;">Express</span></p>
+            <h6>Free delivery on thousands of products in Lagos, Ibadan & Abuja</h6>
+            <hr>
 
-    <p>Choose your location</p>
-    <select>
-        <option>DRC</option>
-        <option>Nigeria</option>
-        <option>Ghana</option>
-        <option>Togo</option>
-        <option>Mali</option>
-        <option>South Africa</option>
-        <option>Uganda</option>
-        <option>Malawi</option>
-        <option>Zenegal</option>
-        <option>Cotedevouir</option>
-    </select>
-    <hr>
+            <p class="location-label">Choose your location</p>
+            <div class="location-pills" role="radiogroup" aria-label="Delivery location">
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Lagos" checked> Lagos</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Ibadan"> Ibadan</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Abeokuta"> Abeokuta</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Abuja"> Abuja</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Port Harcourt"> Port Harcourt</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Benin City"> Benin City</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Enugu"> Enugu</label>
+                <label class="location-pill"><input type="radio" name="delivery-location" value="Kano"> Kano</label>
+            </div>
+            <hr>
 
-    <p> <img src="../../assets/images/adverts/pickup.png" alt="" width="40px">Pickup Station</p>
-    <h6>Delivery Fees ₦ 640 <br> Arriving at pickup station between 24 July & 26 July when you order within next 3hrs 45mins</h6>
-    <p> <img src="../../assets/images/adverts/doordelivery.png" alt="" width="40px"> Door Delivery</p>
-    <h6>Delivery Fees ₦ 1,110 <br> Ready for delivery between 24 July & 26 July when you order within next 3hrs 45mins</h6>
-    <hr>
-    <p> <img src="../../assets/images/adverts/returnpolicy.png" alt="" width="40px">Return Policy</p>
-    <h6>Free return within 7 days for ALL eligible itemsDetails</h6>
-</div>
+            <p> <img src="../../assets/images/adverts/pickup.png" alt="" width="40px">Pickup Station</p>
+            <h6>Delivery Fees <span id="pickup-fee">₦ 640</span> to <span class="delivery-city">Lagos</span> <br> Arriving at pickup station between <span id="pickup-dates">24 July &amp; 26 July</span> when you order within next
+                3hrs 45mins</h6>
+            <p> <img src="../../assets/images/adverts/doordelivery.png" alt="" width="40px"> Door Delivery</p>
+            <h6>Delivery Fees <span id="door-fee">₦ 1,110</span> to <span class="delivery-city">Lagos</span> <br> Ready for delivery between <span id="door-dates">24 July &amp; 26 July</span> when you order within next 3hrs
+                45mins</h6>
+            <hr>
+            <p> <img src="../../assets/images/adverts/returnpolicy.png" alt="" width="40px">Return Policy</p>
+            <h6>Free return within 7 days for ALL eligible items. Details</h6>
+        </div>
 
 
-</div>
+    </div>
 
 
 
 
     <h2 class="heading-related-posts"> You may also like</h2>
 
-    <div  class="related-products">
-
-    <div class="related-products-img">
-        <a href="../Products/iphone.html">
-            <img src="../../assets/images/iphone/15/apple-iphone-15-pro-max-512gb-nano-sim-blue-titanium.jpg" alt="">
-        </a>
-        <h6 class="related-products-type">Apple iPhone 15 Pro Max 512gb (nano-sim blue-titanium)</h6>
-    </div>
-    <div class="related-products-img">
-        <a href="../Products/ipad.html">
-            <img src="../../assets/images/ipad/apple-ipad-9th-gen-10.2-wi-fi-cellular-256gb-space-grey.jpg" alt="">
-        </a>
-        <h6 class="related-products-type">Apple iPad 9th Gen 256gb (10.2-wi-fi-cellular grey)</h6>
-    </div>
-    <div class="related-products-img">
-        <a href="../Products/mac.html">
-            <img src="../../assets/images/mac/apple-macbook-pro-16.2-32gb-1tb-10-cores-m1-max-silver.jpg" alt="">
-        </a>
-        <h6 class="related-products-type">Apple MacBook Pro 16 32gb rom, Itb ram (10-cores max-silver)</h6>
-    </div>
-    <div class="related-products-img">
-        <a href="../Products/accessories.html">
-            <img src="../../assets/images/accessories/airpod/airpods-with-charging-case-gen-2.webp" alt="">
-        </a>
-        <h6 class="related-products-type">Apple airpod Gen 2 with-charging-case (fast-charge, white)</h6>
-    </div>
+    <div class="related-products" id="related-products">
 
     </div>
 
@@ -198,108 +177,110 @@
 
 
 
-    
-   
- <!-- footer -->
- <footer>
-    <div class="socials-container">
-        <div class="support">
-            <a href="https://wa.me/2348102992504" target="_blank"><i class="fab fa-whatsapp fa-2x"></i>
-            <h6>need to speak with us?</h6>
-            </a>
+
+
+    <!-- footer -->
+    <footer>
+        <div class="socials-container">
+            <div class="support">
+                <a href="https://wa.me/2348102992504" target="_blank"><i class="fab fa-whatsapp fa-2x"></i>
+                    <h6>need to speak with us?</h6>
+                </a>
+            </div>
+            <div class="socials">
+                <a href="https://web.facebook.com/McCprian" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="https://x.com/obinesto" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://www.instagram.com/_obinesto_/" target="_blank"><i
+                        class="fab fa-instagram fa-2x"></i></a>
+            </div>
+
         </div>
-        <div class="socials">
-            <a href="https://web.facebook.com/McCprian" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
-            <a href="https://twitter.com/Mc_Cprian02" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-            <a href="https://www.instagram.com/_obinesto_/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-        </div>
+        <hr id="footer-hr">
+        <div class="footer">
+            <div class="learn">
+                <h4>Learn</h4>
+                <a href="../Services/repairs.html">
+                    <p>Technical Support</p>
+                </a>
+                <a href="../Services/trading.html">
+                    <p>Trade-In</p>
+                </a>
+                <a href="../Services/repairs.html">
+                    <p>Repairs</p>
+                </a>
+                <a href="../contact.html">
+                    <p>Contact Us</p>
+                </a>
 
-    </div>
-    <hr id="footer-hr">
-    <div class="footer">
-        <div class="learn">
-            <h4>Learn</h4>
-            <a href="#">
-                <p>Technical Support</p>
-            </a>
-            <a href="../Services/trading.html">
-                <p>Trade-In</p>
-            </a>
-            <a href="../Services/repairs.html">
-                <p>Repairs</p>
-            </a>
-            <a href="../contact.html">
-                <p>Contact Us</p>
-            </a>
-            
+            </div>
+            <div class="products">
+                <h4>Products</h4>
+                <a href="../Products/ipad.html">
+                    <p>Shop iPad</p>
+                </a>
+                <a href="../Products/iphone.html">
+                    <p>Shop iPhone</p>
+                </a>
+                <a href="../Products/mac.html">
+                    <p>Shop Mac</p>
+                </a>
+                <a href="../Products/accessories.html">
+                    <p>Shop Accessories</p>
+                </a>
+
+
+            </div>
+            <div class="policies">
+                <h4>Policies</h4>
+                <a href="../Policies/Terms-of-services.html">
+                    <p>Terms of Service</p>
+                </a>
+                <a href="../Policies/Refund-policy.html">
+                    <p>Refund Policy</p>
+                </a>
+                <a href="../Policies/Shipping-policy.html">
+                    <p>Shipping Policy</p>
+                </a>
+                <a href="../Policies/Privacy-policy.html">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>Sign up to get the latest on sales, new releases and more …</p>
+                <form action="" id="form1">
+                    <input type="text" placeholder="Email*">
+                    <br>
+                    <button id="Lsign-up1">Sign Up</button>
+                </form>
+            </div>
         </div>
-        <div class="products">
-            <h4>Products</h4>
-            <a href="../Products/ipad.html">
-                <p>Shop iPad</p>
-            </a>
-            <a href="../Products/iphone.html">
-                <p>Shop iPhone</p>
-            </a>
-            <a href="../Products/mac.html">
-                <p>Shop Mac</p>
-            </a>
-            <a href="../Products/accessories.html">
-                <p>Shop Accessories</p>
-            </a>
-            
-            
-        </div>
-        <div class="policies">
-            <h4>Policies</h4>
-            <a href="../Policies/Terms-of-services.html">
-                <p>Terms of Service</p>
-            </a>
-            <a href="../Policies/Refund-policy.html">
-                <p>Refund Policy</p>
-            </a>
-            <a href="../Policies/Shipping-policy.html">
-                <p>Shipping Policy</p>
-            </a>
-            <a href="../Policies/Privacy-policy.html">
-                <p>Privacy Policy</p>
-            </a>
-        </div>
-        <div class="subscribe">
+        <hr id="footer-hr2">
+        <div class="subscribe2">
             <h4>Subscribe</h4>
             <p>Sign up to get the latest on sales, new releases and more …</p>
             <form action="" id="form1">
                 <input type="text" placeholder="Email*">
                 <br>
-                <button id="Lsign-up1">Sign Up</button>
+                <button id="Lsign-up2">Sign Up</button>
             </form>
         </div>
-    </div>
-    <hr id="footer-hr2">
-    <div class="subscribe2">
-        <h4>Subscribe</h4>
-        <p>Sign up to get the latest on sales, new releases and more …</p>
-        <form action="" id="form1">
-            <input type="text" placeholder="Email*">
-            <br>
-            <button id="Lsign-up2">Sign Up</button>
-        </form>
-    </div>
 
-    <div class="copyright">
-        <h6>© 2024 iHub Nigeria.</h6>
-    </div>
+        <div class="copyright">
+            <h6>© <span id="copyright-year"></span> iHub Nigeria.</h6>
+        </div>
 
-</footer>
+    </footer>
 
 
     <script>
-    feather.replace();
+        feather.replace();
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="../../landing.js"></script>
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="collection.js"></script>
     <script src="../cart/cart.js"></script>
-  </body>
-  </html>
+</body>
+
+</html>

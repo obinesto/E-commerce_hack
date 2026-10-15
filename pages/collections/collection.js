@@ -298,7 +298,7 @@ var Products = [
         "beforeprice": "195,000",
         "discountprice": "-10%",
         "quantity": 1,
-        "description": "AirPods Max reimagine over-ear headphones. An Apple-designed dynamic driver provides immersive high-fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit. Industry-leading Active Noise Cancellation blocks outside noise, while Transparency mode lets it in. And..." 
+        "description": "AirPods Max reimagine over-ear headphones. An Apple-designed dynamic driver provides immersive high-fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit. Industry-leading Active Noise Cancellation blocks outside noise, while Transparency mode lets it in." 
     },
     {
         "id": 31,
@@ -308,7 +308,7 @@ var Products = [
         "beforeprice": "195,000",
         "discountprice": "-10%",
         "quantity": 1,
-        "description": "AirPods Max reimagine over-ear headphones. An Apple-designed dynamic driver provides immersive high-fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit. Industry-leading Active Noise Cancellation blocks outside noise, while Transparency mode lets it in. And..." 
+        "description": "AirPods Max reimagine over-ear headphones. An Apple-designed dynamic driver provides immersive high-fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit. Industry-leading Active Noise Cancellation blocks outside noise, while Transparency mode lets it in." 
     },
     {
         "id": 32,
@@ -388,7 +388,7 @@ var Products = [
         "beforeprice": "80,000",
         "discountprice": "-10%",
         "quantity": 1,
-        "description": "Thin, light, and easy to grip — this Apple-designed case shows off the brilliant colored finish of iPhone 14 Pro Max while providing extra protection. Crafted with a blend of optically clear polycarbonate and flexible materials, the case fits right..." 
+        "description": "Thin, light, and easy to grip — this Apple-designed case shows off the brilliant colored finish of iPhone 14 Pro Max while providing extra protection. Crafted with a blend of optically clear polycarbonate and flexible materials, the case fits right over the buttons for easy use." 
     },
     {
         "id": 40,
@@ -398,7 +398,7 @@ var Products = [
         "beforeprice": "90,000",
         "discountprice": "-10%",
         "quantity": 1,
-        "description": "Thin, light, and easy to grip — this Apple-designed case shows off the brilliant colored finish of iPhone 14 Pro Max while providing extra protection. Crafted with a blend of optically clear polycarbonate and flexible materials, the case fits right..." 
+        "description": "Thin, light, and easy to grip — this Apple-designed case shows off the brilliant colored finish of iPhone 14 Pro Max while providing extra protection. Crafted with a blend of optically clear polycarbonate and flexible materials, the case fits right over the buttons for easy use." 
     }
 ];
 
@@ -439,15 +439,11 @@ document.addEventListener('DOMContentLoaded', () => {
                <h2>${product.name}</h2>
              <div class='pricelist'>
                <h4 style='font-weight: 600;' class="current-price">Price:${nairaSymbol}${product.price}</h4>
-               <h4 id="before-price">Before:<s>${nairaSymbol}${product.beforeprice}</s></h6>
-               <h6 style='background-color: rgba(255, 192, 203, 0.582); width: fit-content; margin: 0;' id="discount-percent">Discount: ${product.discountprice}</h6>
+               <h4 id="before-price">Before: <s>${nairaSymbol}${product.beforeprice}</s></h4>
+               <h6 id="discount-percent">Discount: ${product.discountprice}</h6>
              </div>
               <button id="add-to-cart">
-                <div class="cart-icon">
-                    <a href="#">
-                        <img src="../../assets/icons/shopping-cart.svg" alt="">
-                    </a>
-                </div>
+                <img src="../../assets/icons/shopping-cart.svg" alt="" class="btn-cart-icon">
                 Add to Cart
               </button>
 
@@ -463,9 +459,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
                <div class="horizontal-line"></div>
-               <div class="horizontal-line2"></div>
-               <div class="horizontal-line3"></div>
-               <div class="horizontal-line4"></div>
            </div>
         
         </div>
@@ -477,7 +470,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <img id="linkedin-share" src="../../assets/icons/kisspng-linkedin-logo-computer-icons-business-symbol-linkedin-icon-5ab1765660baa8.1191823015215796063962.PNG" alt="linkedin" width="40px" height="40px">
             </div>
             
-            <p class='description'> ${product.description}</p>
+            <p class='description' id='product-desc'>${product.description}</p>
+            <button id='desc-toggle' hidden>Read more</button>
         `;
 
 
@@ -495,17 +489,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: `${product.name} added to cart!`,
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
         });
-    } else {
-        const notFoundHTML = '<p>Product not found.</p>';
-        if (window.innerWidth > 799) {
-            document.getElementById('product-details').innerHTML = notFoundHTML;
-        } else {
-            document.getElementById('mobile-product-details').innerHTML = notFoundHTML;
+
+        const desc = document.getElementById('product-desc');
+        const descToggle = document.getElementById('desc-toggle');
+        if (desc && descToggle) {
+            const fullHeight = desc.scrollHeight;
+            desc.classList.add('clamped');
+            if (fullHeight > desc.clientHeight + 4) {
+                descToggle.hidden = false;
+                descToggle.addEventListener('click', () => {
+                    const clamped = desc.classList.toggle('clamped');
+                    descToggle.textContent = clamped ? 'Read more' : 'Show less';
+                });
+            } else {
+                desc.classList.remove('clamped');
+            }
         }
+    } else {
+        document.getElementById('product-details').innerHTML = '<p>Product not found.</p>';
+    }
+
+    const relatedWrap = document.getElementById('related-products');
+    if (relatedWrap && typeof Products !== 'undefined') {
+        const pool = Products.filter(p => p.id !== productId);
+        const start = pool.length && Number.isFinite(productId) ? Math.abs(productId) % pool.length : 0;
+        const picks = [];
+        for (let i = 0; i < Math.min(4, pool.length); i++) {
+            picks.push(pool[(start + i) % pool.length]);
+        }
+        relatedWrap.innerHTML = picks.map(p => `
+            <div class="related-products-img">
+                <a href="collections.html?id=${p.id}">
+                    <img src="${p.image}" alt="${p.name}" loading="lazy">
+                </a>
+                <h6 class="related-products-type">${p.name}</h6>
+            </div>`).join('');
     }
 });
 
@@ -540,51 +562,7 @@ function updateItemCount() {
 document.addEventListener('DOMContentLoaded', updateItemCount);
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    const searchResults = document.createElement('div')
-    searchResults.className = 'handleSearchResults'
-
-
-    searchInput.addEventListener('input', function () {
-        const query = searchInput.value.toLowerCase();
-        searchProducts(query);
-    });
-
-    function searchProducts(query) {
-        // Clear previous results
-        searchResults.innerHTML = '';
-
-        // Filter products based on the query
-        const filteredProducts = Products.filter(product => product.name.toLowerCase().includes(query));
-
-        // Display the filtered products
-        if (filteredProducts.length > 0) {
-            filteredProducts.forEach(product => {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('search-result-item');
-                productDiv.innerHTML = `
-                    <a href="/pages/collections/collections.html?id=${product.id}">
-                        <img src="${product.image}" alt="${product.name}">
-                        <span>${product.name}</span>
-                    </a>
-                `;
-                searchResults.appendChild(productDiv);
-                document.body.appendChild(searchResults)
-            });
-        } else {
-            searchResults.innerHTML = '<p>No products found.</p>';
-        }
-    }
-
-    // Event listener for the search button
-    searchButton.addEventListener('click', function () {
-        const query = searchInput.value;
-        searchProducts(query);
-    });
-});
-
+// Site search lives in landing.js (single shared implementation).
 
 document.addEventListener('DOMContentLoaded', function () {
     // Your existing code here...
@@ -610,6 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Add event listeners to social media icons
+    if (!document.getElementById('facebook-share')) return;
     document.getElementById('facebook-share').addEventListener('click', function () {
         shareOnSocialMedia('facebook');
     });
@@ -619,4 +598,43 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('linkedin-share').addEventListener('click', function () {
         shareOnSocialMedia('linkedin');
     });
+});
+
+// Delivery fees from Lagos, updated when the location pills change.
+document.addEventListener('DOMContentLoaded', () => {
+    const deliveryRates = {
+        'Lagos': { pickup: 640, door: 1110, minDays: 1, maxDays: 2 },
+        'Ibadan': { pickup: 950, door: 1550, minDays: 2, maxDays: 3 },
+        'Abeokuta': { pickup: 950, door: 1550, minDays: 2, maxDays: 3 },
+        'Abuja': { pickup: 1200, door: 2100, minDays: 2, maxDays: 4 },
+        'Port Harcourt': { pickup: 1350, door: 2400, minDays: 3, maxDays: 5 },
+        'Benin City': { pickup: 1200, door: 2100, minDays: 3, maxDays: 5 },
+        'Enugu': { pickup: 1350, door: 2400, minDays: 3, maxDays: 5 },
+        'Kano': { pickup: 1500, door: 2800, minDays: 4, maxDays: 7 }
+    };
+    const pills = document.querySelectorAll('input[name="delivery-location"]');
+    if (!pills.length) return;
+    const formatNaira = n => '\u20A6 ' + n.toLocaleString('en-NG');
+    const dateAfter = days => {
+        const d = new Date();
+        d.setDate(d.getDate() + days);
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+    };
+    function updateDelivery() {
+        const checked = document.querySelector('input[name="delivery-location"]:checked');
+        const city = checked ? checked.value : 'Lagos';
+        const rate = deliveryRates[city] || deliveryRates['Lagos'];
+        const pickupFee = document.getElementById('pickup-fee');
+        const doorFee = document.getElementById('door-fee');
+        const pickupDates = document.getElementById('pickup-dates');
+        const doorDates = document.getElementById('door-dates');
+        if (pickupFee) pickupFee.textContent = formatNaira(rate.pickup);
+        if (doorFee) doorFee.textContent = formatNaira(rate.door);
+        const range = dateAfter(rate.minDays) + ' & ' + dateAfter(rate.maxDays);
+        if (pickupDates) pickupDates.textContent = range;
+        if (doorDates) doorDates.textContent = range;
+        document.querySelectorAll('.delivery-city').forEach(el => { el.textContent = city; });
+    }
+    pills.forEach(pill => pill.addEventListener('change', updateDelivery));
+    updateDelivery();
 });

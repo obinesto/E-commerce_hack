@@ -1,49 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
-
 .container-div {
     display: grid;
-    grid-template-columns: 70% 30%;
-    margin: auto;
-    padding: 5rem 2rem 0 2rem;
-    gap: 2vw;
+    grid-template-columns: 7fr 3fr;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 7rem clamp(1rem, 4vw, 3rem) 2rem;
+    gap: 1.5rem;
+    box-sizing: border-box;
 }
 
 .product-details-2{
     display: grid;
-    grid-template-columns: 30% 70%;
-    gap: 2vw;
-    height: fit-content;
-    overflow: hidden;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
 }
 
 .product-display {
     position: relative;
     height: 100%;
     width: 100%;
-    background-color: rgba(240, 231, 231, 0.5);
-    padding: 1rem;
+    background-color: #f9f9f9;
+    border: solid 1px #d5d5d5;
+    border-radius: 10px;
+    padding: 1.5rem;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .container-img{
     width: 100%;
-    height: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .container-img img{
     width: 100%;
-    height: 80%;
-    border-radius: 1rem;
-    object-fit: fill;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    display: block;
 }
 
 .product-name{
     width: 100%;
+    min-width: 0;
 }
 
 .product-name h2{
     color: black;
     width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    margin: 0;
+    overflow-wrap: break-word;
 }
 
 .pricelist{
@@ -51,81 +62,243 @@
 }
 
 .pricelist h4, .pricelist h6{
-    margin-top: 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+.pricelist .current-price{
+    font-size: 1.5rem;
+}
+
+#before-price{
+    color: #777;
+    font-weight: 400;
+}
+
+#discount-percent{
+    display: inline-block;
+    background-color: #cbf802;
+    color: #000;
+    font-weight: 700;
+    width: fit-content;
+    margin: 0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
 }
 
 #social-media-share {
     margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+#social-media-share img{
+    cursor: pointer;
 }
 
 #add-to-cart {
-    background-color: rgba(0, 0, 0, 0.164);
-    width: 85%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background-color: #000;
+    color: #fff;
+    font-weight: 700;
+    width: 100%;
+    max-width: 320px;
     height: 50px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     margin-bottom: .5rem;
-    margin-top: 1rem;
+    margin-top: 1.25rem;
+}
+
+#add-to-cart:hover{
+    background-color: #cbf802;
+    color: #000;
+}
+
+#add-to-cart:hover .btn-cart-icon{
+    filter: invert(1);
+}
+
+.btn-cart-icon{
+    width: 22px;
+    height: 22px;
+    filter: invert(1);
 }
 
 .col-3{
     display: flex;
 }
 
-.horizontal-line,
-.horizontal-line2,
-.horizontal-line3,
-.horizontal-line4 {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.164);
-    width: 85%;
-    height: 1px;
-    margin-top: 1rem;
+.horizontal-line {
+    border-bottom: 1px solid #e0e0e0;
+    margin-top: 1.25rem;
 }
 
 .product-text{
     margin: 1rem 0 0 0;
 }
 
+.description{
+    margin-top: 1.5rem;
+    color: #333;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+}
+
+.description.clamped{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#desc-toggle{
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #000;
+}
+
+#share-product{
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    margin: 1.5rem 0 0;
+}
+
 .advert {
     height: fit-content;
     width: 100%;
-    background-color: rgba(240, 231, 231, 0.5);
-    font-family: "Annie Use Your Telescope", cursive;
-    font-weight: 600;
-    font-style: normal;
+    background-color: #f9f9f9;
+    border: solid 1px #d5d5d5;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-sizing: border-box;
 }
 
-h5, p, h6, select {
-margin: 10px;
+.advert h5, .advert p, .advert h6, .advert select {
+    margin: 0 0 0.6rem;
+}
+
+.advert h5{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.location-label{
+    font-weight: 700;
+}
+
+.location-pills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 0.6rem;
+}
+
+.location-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid #cfcfcf;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.location-pill input{
+    accent-color: #000;
+    margin: 0;
+}
+
+.location-pill:has(input:checked){
+    background: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+.advert hr{
+    margin: 1rem 0;
+}
+
+.heading-related-posts{
+    max-width: 1320px;
+    margin: 1rem auto 1.25rem;
+    padding-inline: clamp(1rem, 4vw, 3rem);
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .related-products{
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1320px;
     width: 100%;
     overflow: hidden;
-    gap: 1vw;
-    margin: auto;
+    gap: 1.5rem;
+    margin: 0 auto;
+    padding-inline: clamp(1rem, 4vw, 3rem);
+    padding-bottom: 2rem;
+    box-sizing: border-box;
 }
 
 .related-products-img{
     width: 100%;
-    height: 100%;
+    background: #f9f9f9;
+    border: solid 1px #d5d5d5;
+    border-bottom: 4px solid #cbf802;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.related-products-img:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px #00000054;
+}
+
+.related-products-img a{
+    display: block;
+    background: #fff;
+    margin: 0.75rem 0.75rem 0;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 .related-products-img a img{
-    height: 80%;
+    aspect-ratio: 1 / 1;
+    height: auto;
     width: 100%;
-    object-fit: fill;
+    object-fit: contain;
+    display: block;
 }
 
 .related-products-type{
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: #000;
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 0 0 10px 10px;
-    padding: 5px 3px;
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 
@@ -150,41 +323,6 @@ margin: 10px;
     font-weight: bold;
 }
 
-.cart-icon {
-    position: absolute;
-}
-
-
-#search-results {
-    position: fixed;
-    right: 100px;
-    top:60px;
-    z-index: 500;
-    margin-top: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #fdf7f7f3;
-}
-
-.search-result-item {
-    display: flex;
-    align-items: center;
-    padding: 5px 0;
-}
-
-.search-result-item img {
-    max-width: 50px;
-    margin-right: 10px;
-}
-
-.search-result-item span {
-    font-size: 16px;
-}
-
-
-
 
 /* Media queries */
 @media (max-width: 1000px) {
@@ -194,32 +332,24 @@ margin: 10px;
     }
 
     .product-details-2{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .related-products{
         grid-template-columns: 1fr 1fr;
     }
-
-    .related-products-img a img{
-        height: 70%;
-    }
-
-    .product-name{
-        margin-top: -2rem;
-        margin-bottom: 27rem;
-    }
-    #share-product{
-        margin-top: -25rem;
-    }
 }
 
 @media (max-width: 768px){
     .advert{
-        margin-top: 2rem;
+        margin-top: 0;
     }
 
-    .related-products-img a img{
-        height: 60%;
+    .product-details-2{
+        grid-template-columns: 1fr;
+    }
+
+    #add-to-cart{
+        max-width: none;
     }
 }

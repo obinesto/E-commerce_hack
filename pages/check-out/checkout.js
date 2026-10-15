@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: 'Coupon code has already been used for this order.',
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
 
 
@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: `Coupon applied! ${discountPercentage}% has been deducted from your total.`,
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
 
 
@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: 'Invalid coupon code.',
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
 
         }
@@ -168,6 +168,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Attach event listener for applying coupon
     document.getElementById('apply-coupon-button').addEventListener('click', applyCoupon);
+
+    // City pills auto-fill the (read-only) state field
+    const cityStateMap = {
+        'Lagos': 'Lagos State',
+        'Ibadan': 'Oyo State',
+        'Abeokuta': 'Ogun State',
+        'Abuja': 'Federal Capital Territory',
+        'Port Harcourt': 'Rivers State',
+        'Benin City': 'Edo State',
+        'Enugu': 'Enugu State',
+        'Kano': 'Kano State'
+    };
+    function syncStateWithCity() {
+        const selected = document.querySelector('input[name="city"]:checked');
+        const stateInput = document.getElementById('state');
+        if (selected && stateInput) {
+            stateInput.value = cityStateMap[selected.value] || '';
+        }
+    }
+    document.querySelectorAll('input[name="city"]').forEach(pill => {
+        pill.addEventListener('change', syncStateWithCity);
+    });
+    syncStateWithCity();
 
 
     // Checkout functionality
@@ -183,32 +206,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: 'Please log in to proceed with the checkout.',
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
 
-            window.location.href = '/member_area/mLogin.html'; // Redirect to login page
+            window.location.href = '../../member_area/mLogin.html'; // Redirect to login page
+            return;
+        }
+
+        // Stop an empty cart from reaching payment
+        if (cart.length === 0) {
+            Toastify({
+
+                text: 'Your cart is empty!',
+                duration: 3000,
+                gravity: "top", // `top` or `bottom`
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
+            }).showToast();
+
             return;
         }
 
         // Process the customer details
         const customerName = document.getElementById('name').value.trim();
         const customerAddress = document.getElementById('address').value.trim();
-        const customerCountry = document.getElementById('country').value;
+        const customerCountry = 'Nigeria';
+        const selectedCity = document.querySelector('input[name="city"]:checked');
         const customerState = document.getElementById('state').value.trim();
-        const customerCity = document.getElementById('city').value.trim();
+        const customerCity = selectedCity ? selectedCity.value : '';
         const customerPhone = document.getElementById('phone').value.trim();
         const customerAlternatePhone = document.getElementById('altPhone').value.trim();
 
         // Check if all required form fields are filled
-        if (!customerName || !customerAddress || !customerCountry || !customerState || !customerCity || !customerPhone || !customerAlternatePhone) {
+        if (!customerName || !customerAddress || !customerState || !customerCity || !customerPhone || !customerAlternatePhone) {
             Toastify({
 
                 text: 'Please fill out all required fields.',
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
 
             return;
@@ -254,7 +292,7 @@ function generateTransactionReference() {
 }
 
 const customerEmail = localStorage.getItem('userEmail');
-const storedAmount = localStorage.getItem('totalAmount').replace(/,/g, '');
+const storedAmount = (localStorage.getItem('totalAmount') || '0').replace(/,/g, '');
 const customerAmount = parseInt(storedAmount, 10) * 100; // Amount in kobo (10000 kobo = 100 NGN)
 const customerName = localStorage.getItem('customerName');
 const customerPhone = localStorage.getItem('customerPhone');
@@ -305,12 +343,12 @@ function makePayment() {
             localStorage.setItem('currentOrderId', orderDetailsForCard.orderId); // Save current order ID
 
             const newUpdatedMessage =
-                {
-                    id: "Order ID:" + " " + orderDetailsForCard.orderId + ' ' + 'Paid',
-                    sender: 'Admin',
-                    subject: 'Congratulations your order has been shipped!',
-                    body: "Thank you for purchasing our product, your order has been shipped successfully, you will get a message from our admin when the product arrive our pickup station close to your address!"
-                };
+            {
+                id: "Order ID:" + " " + orderDetailsForCard.orderId + ' ' + 'Paid',
+                sender: 'Admin',
+                subject: 'Congratulations your order has been shipped!',
+                body: "Thank you for purchasing our product, your order has been shipped successfully, you will get a message from our admin when the product arrive our pickup station close to your address!"
+            };
 
             let msgUpdate = JSON.parse(localStorage.getItem('messages')) || [];
 
@@ -330,8 +368,8 @@ function makePayment() {
                 text: 'Payment process was not completed.',
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
-                positionLeft: true, // `true` or `false` 
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                position: "left",
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
 
         }
@@ -370,12 +408,12 @@ function handlePayOnDelivery(name, email, address, country, state, city, phone, 
     localStorage.setItem('currentOrderId', orderDetails.orderId); // Save current order ID
 
     const newUpdatedMsg =
-        {
-            id: "Order ID:" + " " + orderDetails.orderId + ' ' + "Pending-Payment",
-            sender: 'Admin',
-            subject: 'Congratulations your order has been shipped!',
-            body: "Hello, we reecived your order... you have chosen to pay on delivery, kindly get your money ready... your order has been shipped successfully, you will get a message from our admin when the product arrive our pickup station close to your address!"
-        };
+    {
+        id: "Order ID:" + " " + orderDetails.orderId + ' ' + "Pending-Payment",
+        sender: 'Admin',
+        subject: 'Congratulations your order has been shipped!',
+        body: "Hello, we reecived your order... you have chosen to pay on delivery, kindly get your money ready... your order has been shipped successfully, you will get a message from our admin when the product arrive our pickup station close to your address!"
+    };
 
     let messages = JSON.parse(localStorage.getItem('messages')) || [];
 
