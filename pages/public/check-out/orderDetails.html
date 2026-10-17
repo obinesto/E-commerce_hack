@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../../assets/images//logos/logo.svg" type="image/svg+xml">
+    <title>iHub-Nigeria-Customer-Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .order-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .order-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .order-details {
+            margin-bottom: 10px;
+        }
+        .order-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Order Details</h1>
+    <div id="orders"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ordersContainer = document.getElementById('orders');
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+            if (orders.length === 0) {
+                ordersContainer.innerHTML = '<p>No orders found.</p>';
+                return;
+            }
+
+            orders.forEach(order => {
+                const orderDiv = document.createElement('div');
+                orderDiv.className = 'order-container';
+
+                let orderDetails = `
+                    <div class="order-header">Order ID: ${order.orderId}</div>
+                    <div class="order-details">
+                        <p>Name: ${order.customerName}</p>
+                        <p>Email: ${order.customerEmail}</p>
+                        <p>Address: ${order.customerAddress}</p>
+                        <p>Country: ${order.customerCountry}</p>
+                        <p>State: ${order.customerState}</p>
+                        <p>City: ${order.customerCity}</p>
+                        <p>Phone No: ${order.customerPhone}</p>
+                        <p>Alt Phone No: ${order.customerAlternatePhone}</p>
+                        <p>Payment Method: ${order.paymentMethod}</p>
+                    `;
+
+                if (order.paymentMethod === 'Card') {
+                    orderDetails += `<p>Transaction Reference: ${order.transactionReference}</p>`;
+                }
+
+                orderDetails += '</div>';
+
+                const cartItems = order.cart.map(item => `
+                    <div>
+                        <p>Product: ${item.name}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                        <p>Price: ${item.price}</p>
+                    </div>
+                `).join('');
+
+                orderDiv.innerHTML = orderDetails + cartItems;
+                ordersContainer.appendChild(orderDiv);
+            });
+        });
+    </script>
+</body>
+</html>

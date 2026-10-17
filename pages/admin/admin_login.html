@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="auth-document">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../../assets/images/logos/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="../auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <title>iHub-Nigeria-Admin-login</title>
+</head>
+
+<body class="auth-page">
+    <a href="#auth-main" class="skip-link">Skip to sign in</a>
+
+    <header class="header">
+
+        <!-- nav section -->
+        <nav class="navbar">
+            <div class="nav-toggle">
+                <button type="button" id="toggle1" aria-label="Open navigation" aria-controls="auth-navigation"
+                    aria-expanded="false"><i data-feather="menu" aria-hidden="true"></i></button>
+                <button type="button" id="toggle2" aria-label="Close navigation" aria-controls="auth-navigation"
+                    aria-expanded="true"><i data-feather="x" aria-hidden="true"></i></button>
+            </div>
+            <div class="logo">
+                <a href="../../index.html"><img src="../../assets/images/logos/logo.svg" alt="logo"></a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li class="dropdown">
+                        <a href="../../index.html">Home</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Products</a>
+                        <div class="dropdown-content">
+                            <a href="../public/Products/iphone.html">iPhone</a>
+                            <a href="../public/Products/ipad.html">iPad</a>
+                            <a href="../public/Products/mac.html">Mac</a>
+                            <a href="../public/Products/accessories.html">Accessories</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../public/Services/repairs.html">Repairs</a>
+                            <a href="../public/Services/trading.html">Trade-In</a>
+                            <a href="../public/Services/financing.html">Financing</a>
+                        </div>
+                    </li>
+
+                    <li><a href="../public/contact/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button type="button" id="search-button" aria-label="Search products"><i data-feather="search"
+                        aria-hidden="true"></i><span class="search-label">Search</span></button>
+            </div>
+            <div class="handleUserStates">
+                <div class="user-account">
+                    <ul>
+                        <li>
+                            <a href="../member/member_login.html"><i class="fa-solid fa-user fa-lg"></i></a>
+                            <div class="user-dropdown-content">
+                                <a href="../../pages/member/member_login.html" id="mLogin">Customer Login</a>
+                                <a href="admin_login.html">Admin Login</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cart" id="cart-icon-container">
+                <a href="../public/cart/cart.html">
+                    <i data-feather="shopping-cart" aria-hidden="true"></i>
+                    <span>cart</span>
+                    <span id="item-count-circle">0</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- navbar 2 -->
+        <div class="nav-links2" id="auth-navigation">
+            <ul>
+                <li>
+                    <div class="dropdown2">
+                        <a href="../../index.html">Home</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Products</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropA" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2a">
+                        <a href="../public/Products/iphone.html">iPhone</a>
+                        <a href="../public/Products/ipad.html">iPad</a>
+                        <a href="../public/Products/mac.html">Mac</a>
+                        <a href="../public/Products/accessories.html">Accessories</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Services</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropB" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2b">
+                        <a href="../public/Services/repairs.html">Repairs</a>
+                        <a href="../public/Services/trading.html">Trade-In</a>
+                        <a href="../public/Services/financing.html">Financing</a>
+                    </div>
+                </li>
+
+                <li class="contact">
+                    <a href="../public/contact/contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="auth-main" class="auth-main">
+        <a class="auth-breadcrumb" href="../../index.html"><i data-feather="arrow-left" aria-hidden="true"></i> Back to
+            the store</a>
+        <div class="auth-shell">
+            <aside class="auth-story" aria-label="Store management">
+                <div>
+                    <h2>Store management</h2>
+                    <p>Manage your products and inventory.</p>
+                </div>
+                <ul class="auth-benefits">
+                    <li><i data-feather="package" aria-hidden="true"></i>Product catalog</li>
+                    <li><i data-feather="edit-3" aria-hidden="true"></i>Product details</li>
+                    <li><i data-feather="layers" aria-hidden="true"></i>Stock levels</li>
+                </ul>
+            </aside>
+            <section class="auth-panel" aria-labelledby="auth-title">
+                <h1 id="auth-title">Admin sign in.</h1>
+                <p class="auth-intro">Enter your email and password.</p>
+                <form id="Vendor_loginForm" data-auth-form="admin" novalidate>
+                    <p id="auth-status" class="auth-status" role="status" aria-live="polite" aria-atomic="true" hidden>
+                    </p>
+                    <div class="auth-field"><label for="VendorMail">Email address</label><input type="email"
+                            id="VendorMail" name="email" autocomplete="username" data-label="email address" required
+                            aria-describedby="VendorMail-error">
+                        <p class="auth-error" id="VendorMail-error" hidden></p>
+                    </div>
+                    <div class="auth-field"><label for="VendorPassword">Password</label>
+                        <div class="auth-password"><input type="password" id="VendorPassword" name="password"
+                                autocomplete="current-password" data-label="password" required
+                                aria-describedby="VendorPassword-error"><button type="button"
+                                class="auth-password-toggle" data-password-toggle aria-controls="VendorPassword"
+                                aria-pressed="false" aria-label="Show password"><i data-feather="eye"
+                                    aria-hidden="true"></i></button></div>
+                        <p class="auth-error" id="VendorPassword-error" hidden></p>
+                    </div>
+                    <button type="submit" class="auth-submit"><span>Sign in</span><i data-feather="arrow-right"
+                            aria-hidden="true"></i></button>
+                </form>
+                <p class="auth-switch">Here to shop? <a href="../member/member_login.html">Customer sign in</a></p>
+                <div class="auth-help">Administrator access only. Need help signing in? <a
+                        href="../public/contact/contact.html">Contact iHub support</a>.</div>
+                <noscript>
+                    <p class="auth-status">Enable JavaScript in your browser to use your iHub account.</p>
+                </noscript>
+            </section>
+        </div>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="socials-container">
+            <div class="support">
+                <a href="https://wa.me/2348102992504" target="_blank"><i class="fab fa-whatsapp fa-2x"></i>
+                    <h6>need to speak with us?</h6>
+                </a>
+            </div>
+            <div class="socials">
+                <a href="https://web.facebook.com/McCprian" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="https://x.com/obinesto" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://www.instagram.com/_obinesto_/" target="_blank"><i
+                        class="fab fa-instagram fa-2x"></i></a>
+            </div>
+
+        </div>
+        <hr id="footer-hr">
+        <div class="footer">
+            <div class="learn">
+                <h4>Learn</h4>
+                <a href="../public/Services/repairs.html">
+                    <p>Technical Support</p>
+                </a>
+                <a href="../public/Services/trading.html">
+                    <p>Trade-In</p>
+                </a>
+                <a href="../public/Services/repairs.html">
+                    <p>Repairs</p>
+                </a>
+                <a href="../public/contact/contact.html">
+                    <p>Contact Us</p>
+                </a>
+
+            </div>
+            <div class="products">
+                <h4>Products</h4>
+                <a href="../public/Products/ipad.html">
+                    <p>Shop iPad</p>
+                </a>
+                <a href="../public/Products/iphone.html">
+                    <p>Shop iPhone</p>
+                </a>
+                <a href="../public/Products/mac.html">
+                    <p>Shop Mac</p>
+                </a>
+                <a href="../public/Products/accessories.html">
+                    <p>Shop Accessories</p>
+                </a>
+
+
+            </div>
+            <div class="policies">
+                <h4>Policies</h4>
+                <a href="../public/Policies/Terms-of-services.html">
+                    <p>Terms of Service</p>
+                </a>
+                <a href="../public/Policies/Refund-policy.html">
+                    <p>Refund Policy</p>
+                </a>
+                <a href="../public/Policies/Shipping-policy.html">
+                    <p>Shipping Policy</p>
+                </a>
+                <a href="../public/Policies/Privacy-policy.html">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>Sign up to get the latest on sales, new releases and more …</p>
+                <form action="" class="newsletter-form">
+                    <input type="text" placeholder="Email*" aria-label="Email for newsletter">
+                    <br>
+                    <button id="Lsign-up1">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <hr id="footer-hr2">
+        <div class="subscribe2">
+            <h4>Subscribe</h4>
+            <p>Sign up to get the latest on sales, new releases and more …</p>
+            <form action="" class="newsletter-form">
+                <input type="text" placeholder="Email*" aria-label="Email for newsletter">
+                <br>
+                <button id="Lsign-up2">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="copyright">
+            <h6>© <span id="copyright-year"></span> iHub Nigeria.</h6>
+        </div>
+    </footer>
+
+    <script>
+        if (window.feather) feather.replace();
+    </script>
+    <script src="../auth.js"></script>
+    <script src="../../products-data.js"></script>
+    <script src="../../index.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

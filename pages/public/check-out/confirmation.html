@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-Hub-Nigeria-Order-Confirmation</title>
+    <link rel="stylesheet" href="confirmation.css">
+    <link rel="shortcut icon" href="../../../assets/images//logos/logo.svg" type="image/svg+xml">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+
+<body>
+    <div class="ribbon-container" id="ribbon-container" aria-hidden="true"></div>
+    <main class="receipt">
+        <div class="receipt-header">
+            <div class="logo">
+                <img src="../../../assets/images/logos/logo.svg" alt="iHub Nigeria logo" width="60px">
+                <span>i-Hub Nigeria</span>
+            </div>
+            <div id="confirmation-message" class="order-status"></div>
+        </div>
+        <div id="confirmation-details" class="receipt-body"></div>
+        <p class="alertMessage"> Note that: you will present this receipt to claim your order when it arrives, <br>
+            kindly keep record of it.
+        </p>
+    </main>
+
+    <div class="button-container">
+        <button class="print" id="print-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9" />
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                <rect x="6" y="14" width="12" height="8" />
+            </svg>
+            Print Order
+        </button>
+        <div class="continue-shopping">
+            <a id="continue-shoppingHover" href="../../../index.html">
+                <i data-feather="arrow-left" aria-hidden="true"></i> Continue Shopping</a>
+        </div>
+    </div>
+
+    <script src="confirmation.js"></script>
+    <script>
+        if (window.feather) feather.replace();
+    </script>
+</body>
+
+</html>

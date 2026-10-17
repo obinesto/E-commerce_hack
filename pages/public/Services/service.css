@@ -1,0 +1,413 @@
+/* Services — wide editorial bands, flat product-matched cards. */
+
+.trade-in {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 7rem clamp(1rem, 4vw, 3rem) 3rem;
+  box-sizing: border-box;
+}
+
+.header-right {
+  text-align: left;
+  margin-top: 0;
+  min-width: 0;
+  max-width: 560px;
+}
+
+.header-right h3 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+  color: #000;
+}
+
+.header-right p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #333;
+  overflow-wrap: break-word;
+}
+
+.service-img {
+  width: 100%;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.service-img2 {
+  width: 100%;
+  max-width: 1320px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+}
+
+.service-img img,
+.service-img2 img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin-top: 0;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
+.question {
+  text-align: left;
+  max-width: 1320px;
+  margin: 4rem auto 0;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+  color: #000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+}
+
+.second-section {
+  text-align: left;
+  margin-top: 0;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.second-section h3 {
+  color: #000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  max-width: 22ch;
+  line-height: 1.15;
+}
+
+.second-section-p {
+  font-size: 1.05rem;
+  font-weight: 300;
+  margin-top: 1rem;
+  color: #333;
+  max-width: 62ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1320px;
+  margin: 2.5rem auto 0;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+  gap: 1.5rem;
+}
+
+.grid1,
+.grid2,
+.grid3 {
+  text-align: center;
+  background: #f9f9f9;
+  border: solid 1px #d5d5d5;
+  border-bottom: 4px solid #cbf802;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  min-width: 0;
+}
+
+.grid1 i,
+.grid2 i,
+.grid3 i {
+  font-size: 1.5rem;
+}
+
+.grid1 h3,
+.grid2 h3,
+.grid3 h3 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.grid1 p,
+.grid2 p,
+.grid3 p {
+  margin: 0;
+  color: #444;
+}
+
+.finance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1320px;
+  margin: 2.5rem auto 0;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.grid-1 {
+  grid-column-start: auto;
+  grid-column-end: auto;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.grid-2 {
+  grid-column-start: auto;
+  grid-column-end: auto;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.finance {
+  margin: 0;
+  border-radius: 10px;
+  border: solid 1px #e0e0e0;
+  border-bottom: 4px solid #cbf802;
+  background: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.finance h5 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.finance p {
+  margin: 0;
+  flex: 1;
+  color: #444;
+}
+
+.finance a {
+  text-decoration: none;
+}
+
+.learn-more {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 6px;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+a.learn-more {
+  align-self: flex-start;
+  color: #fff;
+}
+
+.learn-more:hover {
+  background-color: #cbf802;
+  color: #000;
+}
+
+/* Repairs — editorial sections, numbered steps */
+.repairs21,
+.repairs22,
+.repairs23 {
+  text-align: left;
+  margin-top: 0;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.repairs21 {
+  padding-top: 7rem;
+  padding-bottom: 2.5rem;
+  max-width: 1320px;
+}
+
+.repairs21 h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
+}
+
+.repairs21 h2,
+.repairs22 h2,
+.repairs23 h2 {
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  margin: 0 0 1rem;
+}
+
+.repairs21 p,
+.repairs22 p {
+  max-width: 68ch;
+  color: #333;
+}
+
+.repairs22,
+.repairs23 {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e2e2;
+}
+
+.repair-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: 1.5rem;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.repair-container > div {
+  background: #f9f9f9;
+  border: solid 1px #d5d5d5;
+  border-bottom: 4px solid #cbf802;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.repair-container2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: 1.5rem;
+  padding: 0;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+
+.repair-container2 > div {
+  background: #f9f9f9;
+  border: solid 1px #d5d5d5;
+  border-bottom: 4px solid #cbf802;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.accordion {
+  max-width: 960px;
+  margin: 3rem auto 0;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .trade-in {
+    grid-template-columns: 1fr;
+    padding-top: 6rem;
+    gap: 1.75rem;
+  }
+
+  .header-right {
+    max-width: 640px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .finance-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .grid-1 {
+    grid-column-start: auto;
+    grid-column-end: auto;
+    grid-row-start: auto;
+    grid-row-end: auto;
+  }
+
+  .grid-2 {
+    grid-column-start: auto;
+    grid-column-end: auto;
+    grid-row-start: auto;
+    grid-row-end: auto;
+  }
+
+  .repair-container2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .repair-container {
+    grid-template-columns: 1fr;
+  }
+
+  .service-img img,
+  .service-img2 img {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .trade-in {
+    padding: 5.5rem 1rem 2rem;
+  }
+
+  .service-img2 {
+    padding-inline: 1rem;
+  }
+
+  .question,
+  .second-section,
+  .grid,
+  .finance-grid,
+  .repairs21,
+  .repairs22,
+  .repairs23 {
+    padding-inline: 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .repair-container,
+  .repair-container2 {
+    grid-template-columns: 1fr;
+  }
+
+  .finance {
+    padding: 1.5rem;
+  }
+
+  .repairs21 {
+    padding-top: 5.5rem;
+  }
+
+  .service-img img,
+  .service-img2 img {
+    aspect-ratio: 4 / 3;
+  }
+}

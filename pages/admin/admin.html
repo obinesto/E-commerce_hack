@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="admin-document">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-Hub-Nigeria-Admin-Dashboard</title>
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="shortcut icon" href="../../assets/images/logos/logo.svg" type="png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="../../assets/images/logos/logo.svg" type="png">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="admin-page">
+    <header class="header">
+
+        <!-- nav section -->
+        <nav class="navbar">
+            <div class="nav-toggle">
+                <button type="button" id="toggle1" aria-label="Open navigation"><i data-feather="menu" aria-hidden="true"></i></button>
+                <button type="button" id="toggle2" aria-label="Close navigation"><i data-feather="x" aria-hidden="true"></i></button>
+            </div>
+            <div class="logo">
+                <a href="../../index.html"><img src="../../assets/images/logos/logo.svg" alt="logo"></a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li class="dropdown">
+                        <a href="../../index.html">Home</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Products</a>
+                        <div class="dropdown-content">
+                            <a href="../public/Products/iphone.html">iPhone</a>
+                            <a href="../public/Products/ipad.html">iPad</a>
+                            <a href="../public/Products/mac.html">Mac</a>
+                            <a href="../public/Products/accessories.html">Accessories</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../public/Services/repairs.html">Repairs</a>
+                            <a href="../public/Services/trading.html">Trade-In</a>
+                            <a href="../public/Services/financing.html">Financing</a>
+                        </div>
+                    </li>
+
+                    <li><a href="../public/contact/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button type="button" id="search-button" aria-label="Search products"><i data-feather="search" aria-hidden="true"></i><span class="search-label">Search</span></button>
+            </div>
+
+            <div class="handleUserStates">
+                <div class="user-account">
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-solid fa-user fa-lg"></i></a>
+                            <div class="user-dropdown-content">
+                                <a href="../../pages/member/member_login.html" id="mLogin">Customer Login</a>
+                                <a href="../admin/admin_login.html">Vendor Login</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cart">
+                <a href="../public/cart/cart.html">
+                    <i data-feather="shopping-cart"></i>
+                    <span>cart</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- navbar 2 -->
+        <div class="nav-links2">
+            <ul>
+                <li>
+                    <div class="dropdown2">
+                        <a href="../../index.html">Home</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Products</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropA" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2a">
+                        <a href="../public/Products/iphone.html">iPhone</a>
+                        <a href="../public/Products/ipad.html">iPad</a>
+                        <a href="../public/Products/mac.html">Mac</a>
+                        <a href="../public/Products/accessories.html">Accessories</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Services</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropB" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2b">
+                        <a href="../public/Services/repairs.html">Repairs</a>
+                        <a href="../public/Services/trading.html">Trade-In</a>
+                        <a href="../public/Services/financing.html">Financing</a>
+                    </div>
+                </li>
+
+                <li class="contact">
+                    <a href="../public/contact/contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="admin-main">
+        <div class="admin-heading">
+            <div><h1>Product management</h1><p>Manage the products shown in your store.</p></div>
+            <div class="admin-heading-actions">
+                <button type="button" id="new-product"><i data-feather="plus" aria-hidden="true"></i>Add product</button>
+                <a class="button-link" href="../../index.html"><i data-feather="external-link" aria-hidden="true"></i>View store</a>
+                <button type="button" id="logoutButton"><i data-feather="log-out" aria-hidden="true"></i>Sign out</button>
+            </div>
+        </div>
+        <p class="admin-notice" id="admin-notice" role="status" aria-live="polite" hidden></p>
+        <div class="admin-stats" aria-label="Catalog summary">
+            <div class="admin-stat"><i data-feather="package" aria-hidden="true"></i><div><strong id="product-count">0</strong><span>Products</span></div></div>
+            <div class="admin-stat"><i data-feather="layers" aria-hidden="true"></i><div><strong id="stock-count">0</strong><span>Units in stock</span></div></div>
+            <div class="admin-stat"><i data-feather="alert-circle" aria-hidden="true"></i><div><strong id="unavailable-count">0</strong><span>Out of stock</span></div></div>
+        </div>
+        <div class="admin-workspace">
+            <section class="admin-editor" aria-labelledby="editor-title">
+                <div class="admin-section-heading"><div><h2 id="editor-title">Add product</h2><p id="editor-caption">Enter the product details below.</p></div></div>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div class="admin-field"><label for="product-name">Product name</label><input type="text" id="product-name" required></div>
+                    <div class="admin-field"><label for="product-category">Category</label><select id="product-category" required><option value="iphone">iPhone</option><option value="ipad">iPad</option><option value="mac">Mac</option><option value="accessories">Accessories</option></select></div>
+                    <div class="admin-field-pair">
+                        <div class="admin-field"><label for="product-price">Price (₦)</label><input type="number" id="product-price" min="0" step="1" required></div>
+                        <div class="admin-field"><label for="product-quantity">Stock quantity</label><input type="number" id="product-quantity" min="0" step="1" required></div>
+                    </div>
+                    <div class="admin-field"><label for="product-image">Image URL or path</label><input type="text" id="product-image" required aria-describedby="image-help"><small id="image-help">Use an image link or a path from the site root.</small></div>
+                    <div class="admin-field"><label for="product-description">Description</label><textarea id="product-description" rows="4" required></textarea></div>
+                    <div class="admin-actions"><button type="submit" id="save-product"><i data-feather="plus" aria-hidden="true"></i><span>Add product</span></button><button type="button" id="cancel-edit" hidden>Cancel edit</button></div>
+                </form>
+            </section>
+            <section class="admin-catalog" aria-labelledby="catalog-title">
+                <div class="admin-section-heading"><div><h2 id="catalog-title">Product catalog</h2><p id="catalog-count" aria-live="polite"></p></div></div>
+                <div class="admin-toolbar">
+                    <div class="admin-search"><label class="visually-hidden" for="catalog-search">Search products</label><i data-feather="search" aria-hidden="true"></i><input type="search" id="catalog-search" placeholder="Search products…"></div>
+                    <div><label class="visually-hidden" for="catalog-category">Filter by category</label><select id="catalog-category"><option value="">All categories</option><option value="iphone">iPhone</option><option value="ipad">iPad</option><option value="mac">Mac</option><option value="accessories">Accessories</option></select></div>
+                </div>
+                <div class="admin-list-head" aria-hidden="true"><span>Product</span><span>Price</span><span>Stock</span><span>Actions</span></div>
+                <div id="product-list"></div>
+            </section>
+        </div>
+    </main>
+    <dialog id="delete-product-dialog" class="admin-delete-dialog" aria-labelledby="delete-title" aria-describedby="delete-description">
+        <h2 id="delete-title">Delete product?</h2><p id="delete-description"></p>
+        <div class="admin-actions"><button type="button" id="cancel-delete" autofocus>Keep product</button><button type="button" id="confirm-delete"><i data-feather="trash-2" aria-hidden="true"></i>Delete product</button></div>
+    </dialog>
+
+    <!-- footer -->
+    <footer>
+        <div class="socials-container">
+            <div class="support">
+                <a href="https://wa.me/2348102992504" target="_blank"><i class="fab fa-whatsapp fa-2x"></i>
+                    <h6>need to speak with us?</h6>
+                </a>
+            </div>
+            <div class="socials">
+                <a href="https://web.facebook.com/McCprian" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="https://x.com/obinesto" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://www.instagram.com/_obinesto_/" target="_blank"><i
+                        class="fab fa-instagram fa-2x"></i></a>
+            </div>
+
+        </div>
+        <hr id="footer-hr">
+        <div class="footer">
+            <div class="learn">
+                <h4>Learn</h4>
+                <a href="../public/Services/repairs.html">
+                    <p>Technical Support</p>
+                </a>
+                <a href="../public/Services/trading.html">
+                    <p>Trade-In</p>
+                </a>
+                <a href="../public/Services/repairs.html">
+                    <p>Repairs</p>
+                </a>
+                <a href="../public/contact/contact.html">
+                    <p>Contact Us</p>
+                </a>
+
+            </div>
+            <div class="products">
+                <h4>Products</h4>
+                <a href="../public/Products/ipad.html">
+                    <p>Shop iPad</p>
+                </a>
+                <a href="../public/Products/iphone.html">
+                    <p>Shop iPhone</p>
+                </a>
+                <a href="../public/Products/mac.html">
+                    <p>Shop Mac</p>
+                </a>
+                <a href="../public/Products/accessories.html">
+                    <p>Shop Accessories</p>
+                </a>
+
+
+            </div>
+            <div class="policies">
+                <h4>Policies</h4>
+                <a href="../public/Policies/Terms-of-services.html">
+                    <p>Terms of Service</p>
+                </a>
+                <a href="../public/Policies/Refund-policy.html">
+                    <p>Refund Policy</p>
+                </a>
+                <a href="../public/Policies/Shipping-policy.html">
+                    <p>Shipping Policy</p>
+                </a>
+                <a href="../public/Policies/Privacy-policy.html">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>Sign up to get the latest on sales, new releases and more …</p>
+                <form action="" class="newsletter-form">
+                    <input type="text" placeholder="Email*">
+                    <br>
+                    <button id="Lsign-up1">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <hr id="footer-hr2">
+        <div class="subscribe2">
+            <h4>Subscribe</h4>
+            <p>Sign up to get the latest on sales, new releases and more …</p>
+            <form action="" class="newsletter-form">
+                <input type="text" placeholder="Email*">
+                <br>
+                <button id="Lsign-up2">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="copyright">
+            <h6>© <span id="copyright-year"></span> iHub Nigeria.</h6>
+        </div>
+
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+    <script src="../../products-data.js"></script>
+    <script src="../../index.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

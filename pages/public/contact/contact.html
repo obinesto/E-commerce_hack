@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iHub-Nigeria-Contact-Us</title>
+    <link rel="stylesheet" href="../../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <link rel="shortcut icon" href="../../../assets/images/logos/logo.svg" type="png">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="../../../assets/images/logos/logo.svg" type="png">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+
+        <!-- nav section -->
+        <nav class="navbar">
+            <div class="nav-toggle">
+                <i class="fas fa-bars" id="toggle1"></i>
+                <i class="fas fa-xmark" id="toggle2"></i>
+            </div>
+            <div class="logo">
+                <a href="../../../index.html"><img src="../../../assets/images/logos/logo.svg" alt="logo"></a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li class="dropdown">
+                        <a href="../../../index.html">Home</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Products</a>
+                        <div class="dropdown-content">
+                            <a href="../Products/iphone.html">iPhone</a>
+                            <a href="../Products/ipad.html">iPad</a>
+                            <a href="../Products/mac.html">Mac</a>
+                            <a href="../Products/accessories.html">Accessories</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../Services/repairs.html">Repairs</a>
+                            <a href="../Services/trading.html">Trade-In</a>
+                            <a href="../Services/financing.html">Financing</a>
+                        </div>
+                    </li>
+
+                    <li><a href="../contact/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button type="button" id="search-button" aria-label="Search products"><i data-feather="search" aria-hidden="true"></i><span class="search-label">Search</span></button>
+            </div>
+
+            <div class="handleUserStates">
+                <div class="user-account">
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-solid fa-user fa-lg"></i></a>
+                            <div class="user-dropdown-content">
+                                <a href="../../member/member_login.html" id="mLogin">Customer Login</a>
+                                <a href="../../admin/admin_login.html">Admin Login</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cart">
+                <a href="../cart/cart.html">
+                    <i data-feather="shopping-cart"></i>
+                    <span>cart</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- navbar 2 -->
+        <div class="nav-links2">
+            <ul>
+                <li>
+                    <div class="dropdown2">
+                        <a href="../../../index.html">Home</a>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Products</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropA" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2a">
+                        <a href="../Products/iphone.html">iPhone</a>
+                        <a href="../Products/ipad.html">iPad</a>
+                        <a href="../Products/mac.html">Mac</a>
+                        <a href="../Products/accessories.html">Accessories</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Services</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropB" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2b">
+                        <a href="../Services/repairs.html">Repairs</a>
+                        <a href="../Services/trading.html">Trade-In</a>
+                        <a href="../Services/financing.html">Financing</a>
+                    </div>
+                </li>
+
+                <div class="contact">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </ul>
+        </div>
+    </header>
+
+
+    <!-- contact form area -->
+    <div class="contact-page">
+        <div class="contact-container">
+            <aside class="contact-info">
+                <div class="info-block">
+                    <h2>Contact Us</h2>
+                    <h3>Get in touch today</h3>
+                    <p class="muted">Give us feedback by contacting us on the numbers below</p>
+                    <ul class="team-list">
+                        <li><a href="https://wa.me/2348102992504" target="_blank">+2348102992504</a><span>- (Cyprian Obi)</span></li>
+                        <li><a href="https://wa.me/2348164278056" target="_blank">+2348164278056</a><span>- (Oladimeji Olarenwaju)</span></li>
+                        <li><a href="https://wa.me/2348133295240" target="_blank">+2348133295240</a><span>- (Ogungbe Jumoke)</span></li>
+                        <li><a href="https://wa.me/2347039069565" target="_blank">+2347039069565</a><span>- (Olawale)</span></li>
+                    </ul>
+                </div>
+                <div class="info-block">
+                    <h3>Trading hours</h3>
+                    <p>10:00 - 19:00 [Mon - Sat]</p>
+                    <p>12:00 - 18:00 [Sun &amp; Public Holidays]</p>
+                </div>
+            </aside>
+
+            <div class="form-div">
+                <h2>Send a message</h2>
+                <p class="muted">We usually reply within store hours.</p>
+                <form class="form" action="" method="get" id="contact-form">
+                    <div class="field-row">
+                        <div class="field">
+                            <label class="form-label" for="contact-name">Name*</label>
+                            <input class="input-box" id="contact-name" type="text" placeholder="Your name" required>
+                        </div>
+                        <div class="field">
+                            <label class="form-label" for="contact-email">Email*</label>
+                            <input class="email-input" id="contact-email" type="email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+
+                    <fieldset class="chip-group">
+                        <legend>Enquiry*</legend>
+                        <div class="chips">
+                            <label class="enquiry-option"><input type="radio" name="question" value="sales" required> Sales</label>
+                            <label class="enquiry-option"><input type="radio" name="question" value="support"> Support</label>
+                            <label class="enquiry-option"><input type="radio" name="question" value="icare"> iCare</label>
+                            <label class="enquiry-option"><input type="radio" name="question" value="trade-in"> Trade-in</label>
+                            <label class="enquiry-option"><input type="radio" name="question" value="repairs"> Repairs</label>
+                            <label class="enquiry-option"><input type="radio" name="question" value="others"> Others</label>
+                        </div>
+                    </fieldset>
+
+                    <div class="textarea">
+                        <label class="form-label" for="contact-message">Message*</label>
+                        <textarea placeholder="How can we help?" class="text-area" id="contact-message" rows="5" required></textarea>
+                        <div class="submit-row">
+                            <button id="btn" class=" submit-color" type="submit">Send message</button>
+                            <p class="fine-print">By sending, you agree to be contacted on WhatsApp or email.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="socials-container">
+            <div class="support">
+                <a href="https://wa.me/2348102992504" target="_blank"><i class="fab fa-whatsapp fa-2x"></i>
+                    <h6>need to speak with us?</h6>
+                </a>
+            </div>
+            <div class="socials">
+                <a href="https://web.facebook.com/McCprian" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="https://x.com/obinesto" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://www.instagram.com/_obinesto_/" target="_blank"><i
+                        class="fab fa-instagram fa-2x"></i></a>
+            </div>
+
+        </div>
+        <hr id="footer-hr">
+        <div class="footer">
+            <div class="learn">
+                <h4>Learn</h4>
+                <a href="../Services/repairs.html">
+                    <p>Technical Support</p>
+                </a>
+                <a href="../Services/trading.html">
+                    <p>Trade-In</p>
+                </a>
+                <a href="../Services/repairs.html">
+                    <p>Repairs</p>
+                </a>
+                <a href="contact.html">
+                    <p>Contact Us</p>
+                </a>
+
+            </div>
+            <div class="products">
+                <h4>Products</h4>
+                <a href="../Products/ipad.html">
+                    <p>Shop iPad</p>
+                </a>
+                <a href="../Products/iphone.html">
+                    <p>Shop iPhone</p>
+                </a>
+                <a href="../Products/mac.html">
+                    <p>Shop Mac</p>
+                </a>
+                <a href="../Products/accessories.html">
+                    <p>Shop Accessories</p>
+                </a>
+
+
+            </div>
+            <div class="policies">
+                <h4>Policies</h4>
+                <a href="../Policies/Terms-of-services.html">
+                    <p>Terms of Service</p>
+                </a>
+                <a href="../Policies/Refund-policy.html">
+                    <p>Refund Policy</p>
+                </a>
+                <a href="../Policies/Shipping-policy.html">
+                    <p>Shipping Policy</p>
+                </a>
+                <a href="../Policies/Privacy-policy.html">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>Sign up to get the latest on sales, new releases and more …</p>
+                <form action="" id="form1">
+                    <input type="text" placeholder="Email*">
+                    <br>
+                    <button id="Lsign-up1">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <hr id="footer-hr2">
+        <div class="subscribe2">
+            <h4>Subscribe</h4>
+            <p>Sign up to get the latest on sales, new releases and more …</p>
+            <form action="" id="form1">
+                <input type="text" placeholder="Email*">
+                <br>
+                <button id="Lsign-up2">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="copyright">
+            <h6>© <span id="copyright-year"></span> iHub Nigeria.</h6>
+        </div>
+
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+    <script src="contact.js"></script>
+        <script src="../../../products-data.js"></script>
+<script src="../../../index.js"></script>
+    <script src="../../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

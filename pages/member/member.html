@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="member-document">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-Hub-Nigeria-Customer-Dashboard</title>
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="shortcut icon" href="../../assets/images/logos/logo.svg" type="png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="member.css">
+</head>
+
+<body class="member-page">
+    <header class="header">
+
+        <!-- nav section -->
+        <nav class="navbar">
+            <div class="nav-toggle">
+                <button type="button" id="toggle1" aria-label="Open navigation"><i data-feather="menu" aria-hidden="true"></i></button>
+                <button type="button" id="toggle2" aria-label="Close navigation"><i data-feather="x" aria-hidden="true"></i></button>
+            </div>
+            <div class="logo">
+                <a href="../../index.html"><img src="../../assets/images/logos/logo.svg" alt="logo"></a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li class="dropdown">
+                        <a href="../../index.html">Home</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Products</a>
+                        <div class="dropdown-content">
+                            <a href="../public/Products/iphone.html">iphone</a>
+                            <a href="../public/Products/ipad.html">ipad</a>
+                            <a href="../public/Products/mac.html">Mac</a>
+                            <a href="../public/Products/accessories.html">Accessories</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../public/Services/repairs.html">Repairs</a>
+                            <a href="../public/Services/trading.html">Trade-In</a>
+                            <a href="../public/Services/financing.html">Financing</a>
+                        </div>
+                    </li>
+
+                    <li><a href="../public/contact/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." id="search-input">
+                <button type="button" id="search-button" aria-label="Search products"><i data-feather="search" aria-hidden="true"></i><span class="search-label">Search</span></button>
+            </div>
+            <div class="handleUserStates">
+                <div class="user-account">
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-solid fa-user fa-lg"></i></a>
+                            <div class="user-dropdown-content">
+                                <a href="member_login.html" id="mLogin">Customer Login</a>
+                                <a href="../admin/admin_login.html">Admin Login</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cart">
+                <a href="../public/cart/cart.html">
+                    <i data-feather="shopping-cart"></i>
+                    <span>cart</span>
+                </a>
+            </div>
+
+        </nav>
+
+        <!-- navbar 2 -->
+        <div class="nav-links2">
+            <ul>
+                <li>
+                    <div class="dropdown2">
+                        <a href="../../index.html">Home</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Products</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropA" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2a">
+                        <a href="../public/Products/iphone.html">iPhone</a>
+                        <a href="../public/Products/ipad.html">iPad</a>
+                        <a href="../public/Products/mac.html">Mac</a>
+                        <a href="../public/Products/accessories.html">Accessories</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown2">
+                        <a href="#">Services</a>
+                        <span class="arrow-down"><i class="fas fa-angle-down dropB" style="color: #ffffff;"></i></span>
+                    </div>
+                    <div class="dropdown-content2" id="dropdown-content2b">
+                        <a href="../public/Services/repairs.html">Repairs</a>
+                        <a href="../public/Services/trading.html">Trade-In</a>
+                        <a href="../public/Services/financing.html">Financing</a>
+                    </div>
+                </li>
+
+                <li class="contact">
+                    <a href="../public/contact/contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="member-main">
+        <div class="member-heading"><div><h1>My account</h1><p>Your orders, messages, and account details.</p></div><a class="button-link" href="../../index.html"><i data-feather="shopping-bag" aria-hidden="true"></i>Continue shopping</a></div>
+        <p id="member-notice" class="member-notice" role="status" aria-live="polite" hidden></p>
+        <div class="member-workspace">
+            <aside class="member-sidebar" aria-label="Account navigation">
+                <div class="member-identity"><span class="member-avatar" aria-hidden="true"><i data-feather="user"></i></span><div><strong id="member-name"></strong><p id="member-email"></p></div></div>
+                <nav class="member-nav" aria-label="Account sections">
+                    <a href="#orders" id="my-orders" data-section="orders" aria-current="page"><i data-feather="package" aria-hidden="true"></i>My orders<span class="member-nav-count" id="orders-count">0</span></a>
+                    <a href="#inbox" id="my-inbox" data-section="inbox"><i data-feather="mail" aria-hidden="true"></i>Inbox<span class="member-nav-count inbox-count">0</span></a>
+                    <a href="#account" id="my-manage-account" data-section="account"><i data-feather="user" aria-hidden="true"></i>Account details</a>
+                    <a href="#close-account" id="my-close-account" data-section="close-account"><i data-feather="user-x" aria-hidden="true"></i>Close account</a>
+                    <a href="#logout" id="logout-a" data-section="logout"><i data-feather="log-out" aria-hidden="true"></i>Sign out</a>
+                </nav>
+            </aside>
+            <div class="member-content">
+                <section id="orders" class="member-section" aria-labelledby="orders-title">
+                    <div class="member-section-heading"><div><h2 id="orders-title" tabindex="-1">My orders</h2><p>View your purchases and delivery details.</p></div></div>
+                    <div class="member-order-groups">
+                        <div class="member-order-group"><h3>Ongoing <span id="ongoing-count">0</span></h3><div id="ongoing-orders" class="member-order-list"></div></div>
+                        <div class="member-order-group"><h3>Delivered <span id="delivered-count">0</span></h3><div id="delivered-orders" class="member-order-list"></div></div>
+                    </div>
+                </section>
+                <section id="inbox" class="member-section" aria-labelledby="inbox-title" hidden>
+                    <div class="member-section-heading"><div><h2 id="inbox-title" tabindex="-1">Inbox</h2><p>Messages and updates from iHub.</p></div></div><div id="member-messages" class="member-messages"></div>
+                </section>
+                <section id="account" class="member-section member-panel" aria-labelledby="account-title" hidden>
+                    <div class="member-section-heading"><div><h2 id="account-title" tabindex="-1">Account details</h2><p>Keep your personal information up to date.</p></div></div>
+                    <form id="account-form">
+                        <div class="member-field-pair"><div class="member-field"><label for="first-name">First name</label><input type="text" id="first-name" name="first-name" autocomplete="given-name" required></div><div class="member-field"><label for="last-name">Last name</label><input type="text" id="last-name" name="last-name" autocomplete="family-name" required></div></div>
+                        <div class="member-field"><label for="email">Email address</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+                        <div class="member-field"><label for="password">New password <span>(optional)</span></label><input type="password" id="password" name="password" autocomplete="new-password" aria-describedby="member-password-hint"><p class="member-hint" id="member-password-hint">Leave blank to keep your password. A new password needs at least 8 characters, uppercase and lowercase letters, a number, and a symbol.</p></div>
+                        <div class="member-form-actions"><button type="submit" id="save-account"><i data-feather="check" aria-hidden="true"></i>Save changes</button></div>
+                    </form>
+                </section>
+                <section id="close-account" class="member-section member-panel" aria-labelledby="close-account-title" hidden>
+                    <div class="member-section-heading"><div><h2 id="close-account-title" tabindex="-1">Close account</h2><p>Delete your saved account and order history from this browser. This cannot be undone.</p></div></div><button type="button" id="close-account-btn"><i data-feather="user-x" aria-hidden="true"></i>Close my account</button>
+                </section>
+                <section id="logout" class="member-section member-panel" aria-labelledby="logout-title" hidden>
+                    <div class="member-section-heading"><div><h2 id="logout-title" tabindex="-1">Sign out</h2><p>You can sign in again with your email and password.</p></div></div><button type="button" id="logout-btn"><i data-feather="log-out" aria-hidden="true"></i>Sign out</button>
+                </section>
+            </div>
+        </div>
+    </main>
+    <dialog id="member-action-dialog" class="member-dialog" aria-labelledby="member-dialog-title" aria-describedby="member-dialog-description"><h2 id="member-dialog-title"></h2><p id="member-dialog-description"></p><div class="member-dialog-actions"><button type="button" id="cancel-member-action" autofocus>Cancel</button><button type="button" class="danger-action" id="confirm-member-action"></button></div></dialog>
+
+    <!-- footer -->
+    <footer>
+        <div class="socials-container">
+            <div class="support">
+                <a href="https://wa.me/2348102992504" target="_blank"><i class="fab fa-whatsapp fa-2x"></i>
+                    <h6>need to speak with us?</h6>
+                </a>
+            </div>
+            <div class="socials">
+                <a href="https://web.facebook.com/McCprian" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="https://x.com/obinesto" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://www.instagram.com/_obinesto_/" target="_blank"><i
+                        class="fab fa-instagram fa-2x"></i></a>
+            </div>
+
+        </div>
+        <hr id="footer-hr">
+        <div class="footer">
+            <div class="learn">
+                <h4>Learn</h4>
+                <a href="">
+                    <p>Technical Support</p>
+                </a>
+                <a href="">
+                    <p>Trade-In</p>
+                </a>
+                <a href="">
+                    <p>Repairs</p>
+                </a>
+                <a href="">
+                    <p>Contact Us</p>
+                </a>
+
+            </div>
+            <div class="products">
+                <h4>Products</h4>
+                <a href="">
+                    <p>Shop iPad</p>
+                </a>
+                <a href="">
+                    <p>Shop iPhone</p>
+                </a>
+                <a href="">
+                    <p>Shop Mac</p>
+                </a>
+                <a href="">
+                    <p>Shop Accessories</p>
+                </a>
+
+
+            </div>
+            <div class="policies">
+                <h4>Policies</h4>
+                <a href="">
+                    <p>Terms of Service</p>
+                </a>
+                <a href="">
+                    <p>Refund Policy</p>
+                </a>
+                <a href="">
+                    <p>Shipping Policy</p>
+                </a>
+                <a href="">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>Sign up to get the latest on sales, new releases and more …</p>
+                <form action="" class="newsletter-form">
+                    <input type="text" placeholder="Email*">
+                    <br>
+                    <button id="Lsign-up1">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <hr id="footer-hr2">
+        <div class="subscribe2">
+            <h4>Subscribe</h4>
+            <p>Sign up to get the latest on sales, new releases and more …</p>
+            <form action="" class="newsletter-form">
+                <input type="text" placeholder="Email*">
+                <br>
+                <button id="Lsign-up2">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="copyright">
+            <h6>© <span id="copyright-year"></span> iHub Nigeria.</h6>
+        </div>
+
+    </footer>
+
+
+    <script>
+        if (window.feather) feather.replace();
+    </script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="member.js"></script>
+        <script src="../../products-data.js"></script>
+<script src="../../index.js"></script>
+</body>
+
+</html>
