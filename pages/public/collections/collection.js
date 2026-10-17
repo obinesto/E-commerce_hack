@@ -1,6 +1,5 @@
-const nairaSymbol = '\u20A6'
+const nairaSymbol = "\u20A6";
 // Setting Global variables so that we can access them from inside the functions
-
 
 if (!localStorage.getItem("cart")) {
     localStorage.setItem("cart", "[]");
@@ -9,23 +8,25 @@ if (!localStorage.getItem("cart")) {
 let products = getStoreCatalog();
 let cart = JSON.parse(localStorage.getItem("cart"));
 
-
 // Function to render product details
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const productId = parseInt(urlParams.get('id'), 10);
+    const productId = parseInt(urlParams.get("id"), 10);
 
     // Ensure productId is obtained correctly
-    console.log('Product ID:', productId);
+    console.log("Product ID:", productId);
 
     // Find the product by id
-    const product = products.find(p => p.id === productId);
+    const product = products.find((p) => p.id === productId);
 
     // Check if product is found
-    console.log('Found Product:', product);
+    console.log("Found Product:", product);
 
     if (product) {
-        const productDetails = document.getElementById('product-details');
+        const productDetails = document.getElementById("product-details");
+        // Inventory: show remaining count and disable buying when it is sold out.
+        const stock = Number(product.quantity) || 0;
+        const soldOut = stock === 0;
 
         productDetails.innerHTML = `
         <div class="product-details-2">
@@ -39,9 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
                <h4 id="before-price">Before: <s>${nairaSymbol}${product.beforeprice}</s></h4>
                <h6 id="discount-percent">Discount: ${product.discountprice}</h6>
              </div>
-              <button id="add-to-cart">
+             <p id="product-stock" class="stock-line${soldOut ? " stock-out" : ""}" aria-live="polite">
+               <i data-feather="box" aria-hidden="true"></i>
+               ${soldOut ? "Out of stock" : `In stock — ${stock} ${stock === 1 ? "item" : "items"} remaining`}
+             </p>
+              <button id="add-to-cart"${soldOut ? ' disabled' : ''}>
                 <img src="../../../assets/icons/shopping-cart.svg" alt="" class="btn-cart-icon">
-                Add to Cart
+                ${soldOut ? "Out of Stock" : "Add to Cart"}
               </button>
 
               <div class="row">
@@ -71,18 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <button id='desc-toggle' hidden>Read more</button>
         `;
 
+        // The template is injected after the page's feather pass, so refresh icons here.
+        if (window.feather) feather.replace();
 
-
-
-
-
-
-        document.getElementById('add-to-cart').addEventListener('click', () => {
+        // Add the product to the cart and toast a confirmation.
+        document.getElementById("add-to-cart").addEventListener("click", () => {
             // Implement add to cart functionality here
             addItemToCart(productId);
 
             Toastify({
-
                 text: `${product.name} added to cart!`,
                 duration: 3000,
                 gravity: "top", // `top` or `bottom`
@@ -91,40 +93,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }).showToast();
         });
 
-        const desc = document.getElementById('product-desc');
-        const descToggle = document.getElementById('desc-toggle');
+        const desc = document.getElementById("product-desc");
+        const descToggle = document.getElementById("desc-toggle");
         if (desc && descToggle) {
             const fullHeight = desc.scrollHeight;
-            desc.classList.add('clamped');
+            desc.classList.add("clamped");
             if (fullHeight > desc.clientHeight + 4) {
                 descToggle.hidden = false;
-                descToggle.addEventListener('click', () => {
-                    const clamped = desc.classList.toggle('clamped');
-                    descToggle.textContent = clamped ? 'Read more' : 'Show less';
+                // Expand or re-clamp the long product description.
+                descToggle.addEventListener("click", () => {
+                    const clamped = desc.classList.toggle("clamped");
+                    descToggle.textContent = clamped ? "Read more" : "Show less";
                 });
             } else {
-                desc.classList.remove('clamped');
+                desc.classList.remove("clamped");
             }
         }
     } else {
-        document.getElementById('product-details').innerHTML = '<p>Product not found.</p>';
+        document.getElementById("product-details").innerHTML =
+            "<p>Product not found.</p>";
     }
 
-    const relatedWrap = document.getElementById('related-products');
+    const relatedWrap = document.getElementById("related-products");
     if (relatedWrap) {
-        const pool = products.filter(p => p.id !== productId);
-        const start = pool.length && Number.isFinite(productId) ? Math.abs(productId) % pool.length : 0;
+        const pool = products.filter((p) => p.id !== productId);
+        const start =
+            pool.length && Number.isFinite(productId)
+                ? Math.abs(productId) % pool.length
+                : 0;
         const picks = [];
         for (let i = 0; i < Math.min(4, pool.length); i++) {
             picks.push(pool[(start + i) % pool.length]);
         }
-        relatedWrap.innerHTML = picks.map(p => `
+        relatedWrap.innerHTML = picks
+            .map(
+                (p) => `
             <div class="related-products-img">
                 <a href="collections.html?id=${p.id}">
                     <img src="${storeImg(p.image)}" alt="${p.name}" loading="lazy">
                 </a>
                 <h6 class="related-products-type">${p.name}</h6>
-            </div>`).join('');
+            </div>`,
+            )
+            .join("");
     }
 });
 
@@ -135,103 +146,139 @@ function addItemToCart(productId) {
     });
 
     if (product) {
-        let cartItem = cart.find(item => item.id == productId);
+        // Inventory guard: never more units than remain in stock.
+        const stock = Number(product.quantity) || 0;
+        const cartItem = cart.find((item) => item.id == productId);
+        const inCart = cartItem ? cartItem.quantity : 0;
+        if (stock === 0) {
+            showStockToast("This item is out of stock.");
+            return;
+        }
+        if (inCart >= stock) {
+            showStockToast(`Only ${stock} ${stock === 1 ? "unit" : "units"} left in stock — ${inCart} ${inCart === 1 ? "is" : "are"} already in your cart.`);
+            return;
+        }
         if (cartItem) {
             cartItem.quantity += 1;
         } else {
             cart.push({ ...product, quantity: 1 });
         }
         localStorage.setItem("cart", JSON.stringify(cart));
-        updateItemCount();  // Update item count after adding to cart
+        updateItemCount(); // Update item count after adding to cart
     }
 }
 
+// Toast warnings about stock limits, styled like this page's other notices.
+function showStockToast(text) {
+    if (!window.Toastify) return;
+    Toastify({
+        text: text,
+        duration: 3500,
+        gravity: "top",
+        position: "left",
+        style: { background: "#d50000", color: "#fff" },
+    }).showToast();
+}
 
 // Function to update the item count in the circle
 function updateItemCount() {
-    const itemCountCircle = document.getElementById('item-count-circle');
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemCountCircle = document.getElementById("item-count-circle");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let itemCount = cart.reduce((total, item) => total + item.quantity, 0);
     itemCountCircle.textContent = itemCount;
 }
 
 // Call the function on page load to set the initial count
-document.addEventListener('DOMContentLoaded', updateItemCount);
-
+document.addEventListener("DOMContentLoaded", updateItemCount);
 
 // Site search lives in landing.js (single shared implementation).
 
-document.addEventListener('DOMContentLoaded', function () {
+// Social share: open the platform share windows.
+document.addEventListener("DOMContentLoaded", function () {
     // Your existing code here...
 
     // Function to share on social media
     function shareOnSocialMedia(platform) {
         const url = window.location.href;
-        let shareUrl = '';
+        let shareUrl = "";
 
         switch (platform) {
-            case 'facebook':
+            case "facebook":
                 shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
                 break;
-            case 'twitter':
+            case "twitter":
                 shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
                 break;
-            case 'linkedin':
+            case "linkedin":
                 shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}`;
                 break;
         }
 
-        window.open(shareUrl, '_blank');
+        window.open(shareUrl, "_blank");
     }
 
     // Add event listeners to social media icons
-    if (!document.getElementById('facebook-share')) return;
-    document.getElementById('facebook-share').addEventListener('click', function () {
-        shareOnSocialMedia('facebook');
-    });
-    document.getElementById('twitter-share').addEventListener('click', function () {
-        shareOnSocialMedia('twitter');
-    });
-    document.getElementById('linkedin-share').addEventListener('click', function () {
-        shareOnSocialMedia('linkedin');
-    });
+    if (!document.getElementById("facebook-share")) return;
+    document
+        .getElementById("facebook-share")
+        .addEventListener("click", function () {
+            shareOnSocialMedia("facebook");
+        });
+    document
+        .getElementById("twitter-share")
+        .addEventListener("click", function () {
+            shareOnSocialMedia("twitter");
+        });
+    document
+        .getElementById("linkedin-share")
+        .addEventListener("click", function () {
+            shareOnSocialMedia("linkedin");
+        });
 });
 
 // Delivery fees from Lagos, updated when the location pills change.
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     const deliveryRates = {
-        'Lagos': { pickup: 640, door: 1110, minDays: 1, maxDays: 2 },
-        'Ibadan': { pickup: 950, door: 1550, minDays: 2, maxDays: 3 },
-        'Abeokuta': { pickup: 950, door: 1550, minDays: 2, maxDays: 3 },
-        'Abuja': { pickup: 1200, door: 2100, minDays: 2, maxDays: 4 },
-        'Port Harcourt': { pickup: 1350, door: 2400, minDays: 3, maxDays: 5 },
-        'Benin City': { pickup: 1200, door: 2100, minDays: 3, maxDays: 5 },
-        'Enugu': { pickup: 1350, door: 2400, minDays: 3, maxDays: 5 },
-        'Kano': { pickup: 1500, door: 2800, minDays: 4, maxDays: 7 }
+        Lagos: { pickup: 640, door: 1110, minDays: 1, maxDays: 2 },
+        Ibadan: { pickup: 950, door: 1550, minDays: 2, maxDays: 3 },
+        Abeokuta: { pickup: 950, door: 1550, minDays: 2, maxDays: 3 },
+        Abuja: { pickup: 1200, door: 2100, minDays: 2, maxDays: 4 },
+        "Port Harcourt": { pickup: 1350, door: 2400, minDays: 3, maxDays: 5 },
+        "Benin City": { pickup: 1200, door: 2100, minDays: 3, maxDays: 5 },
+        Enugu: { pickup: 1350, door: 2400, minDays: 3, maxDays: 5 },
+        Kano: { pickup: 1500, door: 2800, minDays: 4, maxDays: 7 },
     };
     const pills = document.querySelectorAll('input[name="delivery-location"]');
     if (!pills.length) return;
-    const formatNaira = n => '\u20A6 ' + n.toLocaleString('en-NG');
-    const dateAfter = days => {
+    // Format an amount as naira with thousands separators.
+    const formatNaira = (n) => "\u20A6 " + n.toLocaleString("en-NG");
+    // Compute a date the given number of days away.
+    const dateAfter = (days) => {
         const d = new Date();
         d.setDate(d.getDate() + days);
-        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+        return d.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
     };
+    // Recalculate the delivery fee and ETA for the chosen location.
     function updateDelivery() {
-        const checked = document.querySelector('input[name="delivery-location"]:checked');
-        const city = checked ? checked.value : 'Lagos';
-        const rate = deliveryRates[city] || deliveryRates['Lagos'];
-        const pickupFee = document.getElementById('pickup-fee');
-        const doorFee = document.getElementById('door-fee');
-        const pickupDates = document.getElementById('pickup-dates');
-        const doorDates = document.getElementById('door-dates');
+        const checked = document.querySelector(
+            'input[name="delivery-location"]:checked',
+        );
+        const city = checked ? checked.value : "Lagos";
+        const rate = deliveryRates[city] || deliveryRates["Lagos"];
+        const pickupFee = document.getElementById("pickup-fee");
+        const doorFee = document.getElementById("door-fee");
+        const pickupDates = document.getElementById("pickup-dates");
+        const doorDates = document.getElementById("door-dates");
         if (pickupFee) pickupFee.textContent = formatNaira(rate.pickup);
         if (doorFee) doorFee.textContent = formatNaira(rate.door);
-        const range = dateAfter(rate.minDays) + ' & ' + dateAfter(rate.maxDays);
+        const range = dateAfter(rate.minDays) + " & " + dateAfter(rate.maxDays);
         if (pickupDates) pickupDates.textContent = range;
         if (doorDates) doorDates.textContent = range;
-        document.querySelectorAll('.delivery-city').forEach(el => { el.textContent = city; });
+        document.querySelectorAll(".delivery-city").forEach((el) => {
+            el.textContent = city;
+        });
     }
-    pills.forEach(pill => pill.addEventListener('change', updateDelivery));
+    // Update delivery details whenever a location pill changes.
+    pills.forEach((pill) => pill.addEventListener("change", updateDelivery));
     updateDelivery();
 });

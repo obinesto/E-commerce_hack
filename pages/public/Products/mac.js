@@ -1,8 +1,8 @@
+// Mac category page: render the MacBook rail from the catalog.
 const nairaSymbol = '\u20A6'
 const macArray = getStoreCatalog().filter(p => p.category === 'mac');
 
-// mac product array
-
+// mac products render
 document.addEventListener('DOMContentLoaded', () => {
     const macContainer = document.getElementById('macbookSeries');
 

@@ -124,6 +124,38 @@
     filter: brightness(0);
 }
 
+/* Inventory line under the prices */
+.stock-line {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #3e5021;
+    margin: 0.65rem 0 0;
+}
+
+.stock-line .feather {
+    width: 16px;
+    height: 16px;
+}
+
+.stock-line.stock-out,
+#add-to-cart:disabled {
+    color: #b3261e;
+}
+
+#add-to-cart:disabled,
+#add-to-cart:disabled:hover {
+    background-color: #9a9a9a;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+#add-to-cart:disabled .btn-cart-icon {
+    filter: brightness(0) invert(1);
+}
+
 .btn-cart-icon{
     width: 22px;
     height: 22px;

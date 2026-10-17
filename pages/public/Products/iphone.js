@@ -1,3 +1,4 @@
+// iPhone category page: render each phone line's rail from the catalog.
 const nairaSymbol = '\u20A6'
 const catalogPhones = getStoreCatalog().filter(p => p.category === 'iphone');
 const iphone11Array = catalogPhones.filter(p => p.line === '11');
@@ -5,8 +6,7 @@ const iphone13Array = catalogPhones.filter(p => p.line === '13');
 const iphone14Array = catalogPhones.filter(p => p.line === '14');
 const iphone15Array = catalogPhones.filter(p => p.line === '15');
 
-// iphone11 product array
-
+// iphone11 products render
 document.addEventListener('DOMContentLoaded', () => {
     const iphone11Container = document.getElementById('iphone11');
 
@@ -41,8 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// iphone13 product Array
-
+// iphone13 products render
 document.addEventListener('DOMContentLoaded', () => {
     const iphone13Container = document.getElementById('iphone13');
 
@@ -77,8 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// iphone14 product array
-
+// iphone14 products render
 document.addEventListener('DOMContentLoaded', () => {
     const iphone14Container = document.getElementById('iphone14');
 
@@ -113,8 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// iphone15 product array
-
+// iphone15 products render
 document.addEventListener('DOMContentLoaded', () => {
     const iphone15Container = document.getElementById('iphone15');
 

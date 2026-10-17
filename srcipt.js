@@ -1,4 +1,5 @@
 const nairaSymbol = '\u20A6'
+// Pick catalog items by id for the home page rails; bad ids are skipped.
 const byIds = (...ids) => ids.map(id => findStoreProduct(id)).filter(Boolean);
 const Products = byIds(23, 14, 37, 20, 1, 6, 11, 13);
 const iphone = byIds(1, 6, 11, 13);
@@ -8,6 +9,7 @@ const adapters = byIds(25, 30, 35, 37);
 
   
   
+  // Render the top picks rail on the home page.
   document.addEventListener('DOMContentLoaded', () => {
       const productContainer = document.getElementById('product-container');
   
@@ -23,6 +25,7 @@ const adapters = byIds(25, 30, 35, 37);
           imgElement.src = storeImg(product.image);
           imgElement.alt = product.name;
 
+          // Shorten long product names so each rail caption stays compact.
           function truncateText(text, maxLength) {
             if (text.length > maxLength) {
                 return text.substring(0, maxLength - 3) + '...';
@@ -55,8 +58,8 @@ const adapters = byIds(25, 30, 35, 37);
       });
   });
 
-  // iphone product array
-
+  
+  // Render the iPhone rail on the home page.
 document.addEventListener('DOMContentLoaded', () => {
     const productContainer = document.getElementById('product-container1');
 
@@ -72,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imgElement.src = storeImg(product.image);
         imgElement.alt = product.name;
 
+        // Shorten long product names so each rail caption stays compact.
         function truncateText(text, maxLength) {
             if (text.length > maxLength) {
                 return text.substring(0, maxLength - 3) + '...';
@@ -104,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Render the iPad rail on the home page.
 document.addEventListener('DOMContentLoaded', () => {
     const productContainer = document.getElementById('product-container2');
 
@@ -119,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imgElement.src = storeImg(product.image);
         imgElement.alt = product.name;
 
+        // Shorten long product names so each rail caption stays compact.
         function truncateText(text, maxLength) {
             if (text.length > maxLength) {
                 return text.substring(0, maxLength - 3) + '...';
@@ -151,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Render the Mac rail on the home page.
 document.addEventListener('DOMContentLoaded', () => {
     const productContainer = document.getElementById('product-container3');
 
@@ -166,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imgElement.src = storeImg(product.image);
         imgElement.alt = product.name;
 
+        // Shorten long product names so each rail caption stays compact.
         function truncateText(text, maxLength) {
             if (text.length > maxLength) {
                 return text.substring(0, maxLength - 3) + '...';
@@ -198,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Render the accessories rail on the home page.
 document.addEventListener('DOMContentLoaded', () => {
     const productContainer = document.getElementById('product-container4');
 
@@ -213,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imgElement.src = storeImg(product.image);
         imgElement.alt = product.name;
 
+        // Shorten long product names so each rail caption stays compact.
         function truncateText(text, maxLength) {
             if (text.length > maxLength) {
                 return text.substring(0, maxLength - 3) + '...';

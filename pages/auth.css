@@ -13,9 +13,7 @@ html.auth-document,
     box-sizing: border-box;
 }
 
-.auth-page .navbar {
-    min-height: 72px;
-}
+/* Header height is governed globally (.navbar height: 72px / --nav-h). */
 
 .auth-page .nav-toggle button {
     border: 0;
@@ -32,7 +30,7 @@ html.auth-document,
 .auth-main {
     max-width: 1040px;
     margin: 0 auto;
-    padding: calc(max(10vh, 72px) + 24px) 24px 40px;
+    padding: calc(var(--nav-h, 72px) + 24px) 24px 40px;
 }
 
 .auth-breadcrumb {

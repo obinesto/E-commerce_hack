@@ -109,7 +109,7 @@
 
 .iphone-banner{
     width: 100%;
-    margin-top: 10vh;
+    margin-top: var(--nav-h, 72px);
 }
 .iphone-banner img{
     width: 100%;
@@ -158,6 +158,6 @@
     }
 
     .iphone-banner{
-        margin-top: 10vh;
+        margin-top: var(--nav-h, 72px);
     }
 }

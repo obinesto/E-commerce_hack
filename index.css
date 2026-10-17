@@ -35,7 +35,7 @@ body {
     position: relative;
 }
 
-/* navbar 1 */
+/* navbar 1 — one fixed height on every page and screen size */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -43,10 +43,17 @@ body {
     padding: 0 20px;
     background-color: black;
     width: 100%;
+    height: 72px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
+}
+
+/* --nav-h is the single source of truth for the header height; JS keeps it
+   in sync, so hero content and menus always sit flush under the header. */
+:root {
+    --nav-h: 72px;
 }
 
 .cart{
@@ -77,7 +84,7 @@ body {
 
 .logo {
   flex: 1;
-  height: 10vh;
+  height: 100%;
 }
 
 .logo img{
@@ -349,10 +356,10 @@ margin-right: 1rem;
 /* navbar 2 */
 .nav-links2{
   position: fixed;
-  top: 10vh;
+  top: var(--nav-h, 72px);
   left: 0;
   right: 0;
-  max-height: calc(100dvh - 10vh);
+  max-height: calc(100dvh - var(--nav-h, 72px));
   overflow-y: auto;
   width: 100%;
   background: black;
@@ -425,7 +432,7 @@ margin-right: 1rem;
 }
 
 .carousel-inner{
-  padding-top: 10vh;
+  padding-top: var(--nav-h, 72px);
 }
 
 .carousel-item{
@@ -889,9 +896,31 @@ font-weight: bolder;
         display: block;
     }
 
-    .logo{
-      margin-right: -1rem;
-      margin-left: -1rem;
+    /* Unified compact header: same on every page, aborts squeeze on the search. */
+    .navbar {
+      padding: 0 12px;
+      gap: 8px;
+    }
+
+    .logo {
+      flex: 0 0 54px;
+      margin: 0;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    #toggle1,
+    #toggle2 {
+      margin-right: 0;
+    }
+
+    .cart a,
+    .user-account a {
+      padding: 10px 8px;
     }
 
     .search-bar{
@@ -1010,8 +1039,9 @@ font-weight: bolder;
   }
 
   .footer {
-    grid-template-columns: 10% 1fr 1fr 1fr;
-    gap: .5vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
   }
 
   .support a{
@@ -1040,11 +1070,13 @@ font-weight: bolder;
     padding-right: 1rem;
   }
 
-  .learn{
-    grid-column-start: 2;
-    grid-column-end: 3;
+  /* Let Learn, Products, and Policies flow across the full-width grid. */
+  .learn,
+  .products,
+  .policies {
+    grid-column: auto;
   }
-  
+
   .subscribe{
     display: none;
   }
@@ -1141,11 +1173,11 @@ font-weight: bolder;
   }
 
   .footer {
-    grid-template-columns: 1% 1fr 1fr 1fr 1%;
-    gap: 1vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
     padding: 1rem;
   }
-} 
+}
 
 /* screen size 6 */
 @media (max-width:350px){
@@ -1220,17 +1252,19 @@ button:focus-visible {
     line-height: 1;
 }
 
-/* Account sign-up buttons (header dropdown + footer form) */
+/* Footer newsletter sign-up buttons */
 #Lsign-up1,
 #Lsign-up2 {
-    background-color: #171b13;
-    color: #fff;
+    background-color: #cbf802;
+    color: #171b13;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
 }
 
 #Lsign-up1:is(:hover, :focus-visible),
 #Lsign-up2:is(:hover, :focus-visible) {
-    background-color: #bce600;
-    color: #171b13;
+    background-color: #a9cf00;
 }
 
 @media (max-width: 768px) {
@@ -1245,4 +1279,50 @@ button:focus-visible {
     #search-button {
         min-width: 38px;
     }
+}
+
+/* Footer subscribe: roomy input and button on small screens */
+@media (max-width: 768px) {
+    #form1 input,
+    .newsletter-form input,
+    #Lsign-up1,
+    #Lsign-up2,
+    .newsletter-form button,
+    #form1 button {
+        width: min(92vw, 340px);
+        min-height: 46px;
+        padding: 0.6rem 1rem;
+    }
+}
+
+/* Footer subscribe toast: viewport-bottom on mobile, inline under the
+   Sign Up button on desktop. */
+.footer-toast {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(94vw, 420px);
+    background-color: #cbf802;
+    color: #171b13;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    z-index: 100000;
+}
+
+@media (min-width: 769px) {
+    .footer-toast {
+        position: static;
+        transform: none;
+        width: max-content;
+        max-width: 100%;
+        margin: 0.6rem auto 0;
+    }
+}
+
+.footer-toast--error {
+    background-color: #d50000;
+    color: #fff;
 }

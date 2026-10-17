@@ -1,6 +1,8 @@
+// iPad category page: render the iPad rail from the catalog.
 const nairaSymbol = '\u20A6'
 const ipads = getStoreCatalog().filter(p => p.category === 'ipad');
 
+// ipad products render
 document.addEventListener('DOMContentLoaded', () => {
     const ipadContainer = document.getElementById('ipadSeries');
 
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const imgElement = document.createElement('img');
         imgElement.src = storeImg(ipad.image);
-        imgElement.alt =ipad.name;
+        imgElement.alt = ipad.name;
 
         const PDescription = document.createElement('h5')
         PDescription.innerText = ipad.name

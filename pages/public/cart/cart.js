@@ -1,11 +1,34 @@
 const nairaSymbol = "\u20A6";
 
+// Read the remaining stock for a product, or null when unknown.
+function stockForProduct(productId) {
+  const product = typeof findStoreProduct === "function"
+    ? findStoreProduct(productId)
+    : null;
+  if (!product) return null;
+  return Math.max(0, Number(product.quantity) || 0);
+}
+
+// Toast warnings about stock limits.
+function showStockToast(text) {
+  if (!window.Toastify) return;
+  Toastify({
+    text: text,
+    duration: 3500,
+    gravity: "top",
+    position: "left",
+    style: { background: "#d50000", color: "#fff" },
+  }).showToast();
+}
+
+// Cart page: render items and totals, and handle quantity, remove, and clear.
 document.addEventListener("DOMContentLoaded", () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // Call renderCart on page load to display items in the cart
   renderCart();
 
+  // Render the cart rows and total, then rebind the row controls.
   function renderCart() {
     const cartItemsContainer = document.getElementById("cart-items");
     const cartTotalElement = document.getElementById("cart-total");
@@ -23,13 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const itemTotalRaw = item.price.replace(/,/g, ""); // remove commas to aid summation
       const itemTotal = parseInt(itemTotalRaw, 10) * item.quantity;
       total += itemTotal;
+      const stock = stockForProduct(item.id);
 
       const itemRow = document.createElement("tr");
       itemRow.innerHTML = `
         <td data-label="Product"><span class="cart-product"><img src='${storeImg(item.image)}' alt=''> <span>${item.name}</span></span></td>
         <td data-label="Price">${nairaSymbol} ${item.price}</td>
         <td data-label="Quantity">
-          <input type="number" value="${item.quantity}" min="1" data-id="${item.id}" class="quantity-input">
+          <input type="number" value="${item.quantity}" min="1"${stock !== null ? ` max="${stock}"` : ""} data-id="${item.id}" class="quantity-input">
         </td>
         <td data-label="Total">${nairaSymbol} ${itemTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td>
@@ -39,13 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItemsContainer.appendChild(itemRow);
     });
 
-    const totalAmountFormatted = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const totalAmountFormatted = total
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     cartTotalElement.innerHTML = `Total Amount: ${nairaSymbol}${totalAmountFormatted}`;
-    localStorage.setItem('totalAmount', total);
+    localStorage.setItem("totalAmount", total);
 
-   
     // Add event listeners for quantity changes and remove buttons
     document.querySelectorAll(".quantity-input").forEach((input) => {
+      // Apply a quantity change; below one removes the item, beyond stock clamps.
       input.addEventListener("change", (event) => {
         const productId = parseInt(event.target.getAttribute("data-id"));
         const newQuantity = parseInt(event.target.value, 10);
@@ -53,22 +79,31 @@ document.addEventListener("DOMContentLoaded", () => {
           removeItemFromCart(productId);
           return;
         }
+        const stock = stockForProduct(productId);
+        if (stock !== null && newQuantity > stock) {
+          if (stock === 0) {
+            removeItemFromCart(productId);
+            showStockToast("This item sold out and was removed from your cart.");
+          } else {
+            updateQuantity(productId, stock);
+            showStockToast(`Only ${stock} ${stock === 1 ? "unit" : "units"} of this item remain in stock.`);
+          }
+          return;
+        }
         updateQuantity(productId, newQuantity);
       });
     });
 
     document.querySelectorAll(".remove-btn").forEach((button) => {
+      // Remove the chosen item from the cart.
       button.addEventListener("click", (event) => {
         const productId = parseInt(event.target.getAttribute("data-id"));
         removeItemFromCart(productId);
       });
     });
-
   }
 
-
-
-
+  // Add one unit of a product to the stored cart (kept for parity).
   function addItemToCart(productId) {
     let product = products.find((product) => product.id == productId);
 
@@ -85,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Drop an item from the cart and refresh the views.
   function removeItemFromCart(productId) {
     cart = cart.filter((item) => item.id != productId);
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -92,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateItemCount();
   }
 
+  // Set a product's quantity and refresh the views.
   function updateQuantity(productId, quantity) {
     for (let product of cart) {
       if (product.id == productId) {
@@ -103,10 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
     updateItemCount();
   }
 
+  // Sum the cart line totals.
   function getTotal() {
     let total = cart.reduce(
       (sum, item) => sum + parseFloat(item.price) * item.quantity,
-      0
+      0,
     );
     return total.toFixed(2);
   }
@@ -122,22 +160,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call the function on page load to set the initial count
   updateItemCount();
 
-
   // ClearCart functionality
   document.getElementById("clearcart-button").addEventListener("click", () => {
     clearCart();
   });
 
+  // Empty the stored cart after confirming it has items, then toast.
   function clearCart() {
     if (cart.length === 0) {
       Toastify({
-
         text: "Your cart is empty!",
         duration: 3000,
         gravity: "top", // `top` or `bottom`
-        position: "left", 
+        position: "left",
         style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
-        }).showToast();
+      }).showToast();
 
       return;
     }
@@ -148,55 +185,43 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
 
     Toastify({
-
       text: "Your Cart is Cleared Successfully!",
       duration: 3000,
       gravity: "top", // `top` or `bottom`
-      position: "left", 
+      position: "left",
       style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
-      }).showToast();
+    }).showToast();
   }
 
-
   // Checkout functionality
-  document.getElementById('checkout-button').addEventListener('click',  function(event)  {
-    event.preventDefault(); // Prevent default form submission
-        handleCartcheck()
-        
-    
-      });
-    
-      function handleCartcheck() {
-        if (cart.length === 0) {
-          Toastify({
+  document
+    .getElementById("checkout-button")
+    .addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent default form submission
+      handleCartcheck();
+    });
 
-            text: "Your cart is empty!",
-            duration: 3000,
-            gravity: "top", // `top` or `bottom`
-            position: "left", 
-            style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
-            }).showToast();
-        }
-    
-       else {
-        
-        // Check which radio button is selected
-        const selectedPaymentMethod = document.querySelector('input[name="recommend"]:checked').value;
-    
-         // Store the selected payment method in localStorage
-         localStorage.setItem('paymentMethod', selectedPaymentMethod);
-    
-        // Redirect to the customer details form page
-        window.location.href = '../check-out/checkout.html'; // Replace with the actual URL of your form page
-        };
-    
+  // Route to checkout when the cart has items; warn otherwise.
+  function handleCartcheck() {
+    if (cart.length === 0) {
+      Toastify({
+        text: "Your cart is empty!",
+        duration: 3000,
+        gravity: "top", // `top` or `bottom`
+        position: "left",
+        style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
+      }).showToast();
+    } else {
+      // Check which radio button is selected
+      const selectedPaymentMethod = document.querySelector(
+        'input[name="recommend"]:checked',
+      ).value;
+
+      // Store the selected payment method in localStorage
+      localStorage.setItem("paymentMethod", selectedPaymentMethod);
+
+      // Redirect to the customer details form page
+      window.location.href = "../check-out/checkout.html"; // Replace with the actual URL of your form page
     }
-    
-    
-    
-
-
+  }
 });
-
-
-

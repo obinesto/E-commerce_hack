@@ -1,20 +1,36 @@
 html.member-document, .member-page { min-width: 320px; }
 .member-page { margin: 0; padding: 0; background: #f6f7f3; color: #20231c; }
 .member-page * { box-sizing: border-box; }
-.member-page .navbar { min-height: max(10vh, 72px); }
-.member-page .nav-links2 { top: max(10vh, 72px); }
-.member-main { max-width: 1320px; margin: auto; padding: calc(max(10vh, 72px) + 32px) 32px 48px; }
+
+/* The hamburger/close toggles stay bare icons; the generic button skin
+   (dark base, lime hover) must not wrap them. */
+.member-page .nav-toggle button {
+    display: inline-block;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    line-height: 1;
+}
+.member-page .nav-toggle button:is(:hover, :focus-visible) {
+    background: transparent;
+    color: #fff;
+}
+
+.member-main { max-width: 1320px; margin: auto; padding: calc(var(--nav-h, 72px) + 32px) 32px 48px; }
 .member-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 28px; }
 .member-heading h1 { font-size: 30px; font-weight: 600; letter-spacing: -.03em; margin: 0 0 6px; }
 .member-heading p, .member-section-heading p { color: #6a6e62; font-size: 13px; line-height: 1.6; margin: 0; }
-.member-page button, .member-page .button-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 16px; border: 1px solid; border-radius: 5px; font: inherit; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; }
-.member-page button, .member-page .button-link { background-color: #171b13; color: #fff; border-color: #171b13; }
-.member-page button:is(:hover, :focus-visible):not(:disabled), .member-page .button-link:is(:hover, :focus-visible) { background-color: #bce600; color: #171b13; border-color: #bce600; }
-.member-page button:disabled, .member-page .button-link:disabled { opacity: .6; cursor: not-allowed; }
+/* Dashboard button skin — scoped to the dashboard content and dialogs only,
+   so the shared header keeps its public-page dimensions. */
+.member-page main button, .member-page main .button-link, .member-page dialog button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 16px; border: 1px solid; border-radius: 5px; font: inherit; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; }
+.member-page main button, .member-page main .button-link, .member-page dialog button { background-color: #171b13; color: #fff; border-color: #171b13; }
+.member-page main button:is(:hover, :focus-visible):not(:disabled), .member-page main .button-link:is(:hover, :focus-visible), .member-page dialog button:is(:hover, :focus-visible):not(:disabled) { background-color: #bce600; color: #171b13; border-color: #bce600; }
+.member-page main button:disabled, .member-page main .button-link:disabled { opacity: .6; cursor: not-allowed; }
 .member-page #logout-btn:is(:hover, :focus-visible):not(:disabled), .member-page #close-account-btn:is(:hover, :focus-visible):not(:disabled), .member-page #confirm-member-action:is(:hover, :focus-visible):not(:disabled) { background-color: #b3261e; color: #fff; border-color: #b3261e; }
-.member-page .feather { width: 18px; height: 18px; flex-shrink: 0; }
+.member-page main .feather, .member-page dialog .feather { width: 18px; height: 18px; flex-shrink: 0; }
 .member-workspace { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 24px; align-items: start; }
-.member-sidebar { background: #fff; border: 1px solid #dedfd7; border-radius: 8px; position: sticky; top: calc(max(10vh, 72px) + 24px); max-height: calc(100dvh - max(10vh, 72px) - 48px); overflow-x: hidden; overflow-y: auto; }
+.member-sidebar { background: #fff; border: 1px solid #dedfd7; border-radius: 8px; position: sticky; top: calc(var(--nav-h, 72px) + 24px); max-height: calc(100dvh - var(--nav-h, 72px) - 48px); overflow-x: hidden; overflow-y: auto; }
 .member-identity { display: flex; align-items: center; gap: 12px; padding: 22px 18px; border-bottom: 1px solid #e6e8df; }
 .member-identity > div { min-width: 0; }
 .member-identity strong { display: block; font-size: 14px; overflow-wrap: anywhere; }
@@ -27,7 +43,7 @@ html.member-document, .member-page { min-width: 320px; }
 .member-nav a[data-section=logout]:is(:hover, :focus-visible), .member-nav a[data-section=close-account]:is(:hover, :focus-visible) { background: #b3261e; color: #fff; }
 .member-nav-count { margin-left: auto; font-size: 11px; min-width: 20px; padding: 2px 5px; text-align: center; border: 1px solid currentColor; border-radius: 4px; }
 .member-content { min-width: 0; }
-.member-section { scroll-margin-top: calc(max(10vh, 72px) + 24px); }
+.member-section { scroll-margin-top: calc(var(--nav-h, 72px) + 24px); }
 .member-section-heading { margin-bottom: 20px; }
 .member-section-heading h2 { font-size: 22px; font-weight: 600; letter-spacing: -.02em; margin: 0 0 6px; }
 .member-section-heading h2:focus { outline: none; }
@@ -108,7 +124,7 @@ html.member-document, .member-page { min-width: 320px; }
 .member-field-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .member-hint { font-size: 12px; line-height: 1.7; color: #717865; margin: 8px 0 0; }
 .member-form-actions { margin-top: 24px; }
-.member-notice { position: sticky; top: max(10vh, 72px); z-index: 5; background: #eef3df; border: 1px solid #d1dbb0; color: #3e5021; border-radius: 5px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; line-height: 1.6; }
+.member-notice { position: sticky; top: var(--nav-h, 72px); z-index: 5; background: #eef3df; border: 1px solid #d1dbb0; color: #3e5021; border-radius: 5px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; line-height: 1.6; }
 .member-notice[data-kind=error] { background: #fcefeb; border-color: #e6bab4; color: #992f25; }
 .member-dialog { width: min(420px, calc(100% - 32px)); padding: 28px; border: 1px solid #dedfd7; border-radius: 8px; color: #20231c; }
 .member-dialog::backdrop { background: #0008; }
@@ -123,12 +139,7 @@ html.member-document, .member-page { min-width: 320px; }
     .member-order-groups { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 760px) {
-    .member-main { padding-inline: 16px; padding-top: calc(max(10vh, 72px) + 24px); }
-    .member-page .navbar { padding-inline: 12px; gap: 8px; }
-    .member-page .logo { flex: 0 0 54px; height: 48px; margin: 0; }
-    .member-page .logo img { width: 100%; }
-    .member-page .search-bar { flex: 1; }
-    .member-page .nav-toggle button { margin-right: 0; }
+    .member-main { padding-inline: 16px; padding-top: calc(var(--nav-h, 72px) + 24px); }
     .member-heading { align-items: flex-start; flex-direction: column; }
     .member-workspace { grid-template-columns: 1fr; }
     .member-sidebar { position: static; max-height: none; overflow: visible; }
